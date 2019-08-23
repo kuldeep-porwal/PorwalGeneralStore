@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="7.13.0.8313" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PorwalGeneralStore.CommonData\PorwalGeneralStore.CommonData.csproj" />
+    <ProjectReference Include="..\PorwalGeneralStore.DataAccessLayer\PorwalGeneralStore.DataAccessLayer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Implementation\" />
+    <Folder Include="Interface\" />
+  </ItemGroup>
+
+</Project>

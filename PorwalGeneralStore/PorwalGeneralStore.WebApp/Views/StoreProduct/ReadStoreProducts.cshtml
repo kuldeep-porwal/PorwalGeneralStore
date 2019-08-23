@@ -1,0 +1,149 @@
+﻿@model IEnumerable<PorwalGeneralStore.DataModel.Public.GetStoreItem>
+
+@{
+    ViewData["Title"] = "ReadStoreProducts";
+}
+
+<h2>ReadStoreProducts</h2>
+
+<p>
+    <a asp-action="AddProduct">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sku)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CostPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SellingPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MainProductImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductHeading)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductShortDesc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductFullDesc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsInStock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsInventoryProduct)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Upccode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HasVariantProduct)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PublishedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vendor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActiveProduct)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sku)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CostPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SellingPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MainProductImage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductHeading)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductShortDesc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductFullDesc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsInStock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsInventoryProduct)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Upccode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HasVariantProduct)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PublishedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vendor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActiveProduct)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

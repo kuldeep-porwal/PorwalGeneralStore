@@ -3,3 +3,26 @@
 ################################################################################
 
 /PorwalGeneralStore/.vs/PorwalGeneralStore/v15
+/PorwalGeneralStore/.vs/PorwalGeneralStore/v15/Server/sqlite3
+/PorwalGeneralStore/PorwalGeneralStore.BusinessLayer/bin/Debug/netcoreapp2.1
+/PorwalGeneralStore/PorwalGeneralStore.BusinessLayer/obj
+/PorwalGeneralStore/PorwalGeneralStore.CommonData/bin/Debug/netcoreapp2.1
+/PorwalGeneralStore/PorwalGeneralStore.CommonData/obj
+/PorwalGeneralStore/PorwalGeneralStore.DataAccessLayer/bin/Debug/netcoreapp2.1
+/PorwalGeneralStore/PorwalGeneralStore.DataAccessLayer/obj
+/PorwalGeneralStore/PorwalGeneralStore.DataModel/bin/Debug/netcoreapp2.1
+/PorwalGeneralStore/PorwalGeneralStore.DataModel/obj
+/PorwalGeneralStore/PorwalGeneralStore.EdmxModel/bin/Debug/netcoreapp2.1
+/PorwalGeneralStore/PorwalGeneralStore.EdmxModel/obj
+/PorwalGeneralStore/PorwalGeneralStore.Global/bin/Debug/netcoreapp2.1
+/PorwalGeneralStore/PorwalGeneralStore.Global/obj
+/PorwalGeneralStore/PorwalGeneralStore.ThirdPartyIntegration/bin/Debug/netcoreapp2.1
+/PorwalGeneralStore/PorwalGeneralStore.ThirdPartyIntegration/obj
+/PorwalGeneralStore/PorwalGeneralStore.Utility/bin/Debug/netcoreapp2.1
+/PorwalGeneralStore/PorwalGeneralStore.Utility/obj
+/PorwalGeneralStore/PorwalGeneralStore.WebApp/bin/Debug/netcoreapp2.2
+/PorwalGeneralStore/PorwalGeneralStore.WebApp/obj
+/PorwalGeneralStore/PorwalGeneralStore.XUnitTestBusiness/bin/Debug/netcoreapp2.1
+/PorwalGeneralStore/PorwalGeneralStore.XUnitTestBusiness/obj
+/PorwalGeneralStore/PorwalGeneralStore.XUnitTestUtility/bin/Debug/netcoreapp2.1
+/PorwalGeneralStore/PorwalGeneralStore.XUnitTestUtility/obj
