@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PorwalGeneralStore.EdmxModel;
 
 namespace PorwalGeneralStore.WebApp
 {
@@ -26,12 +28,14 @@ namespace PorwalGeneralStore.WebApp
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            //services.AddScoped<IProductBusiness, ProductBusiness>();
-            //services.AddScoped<IStoreProductLayer, StoreProductLayer>();
-            //services.AddScoped<IStoreProductCategoryLayer, StoreProductCategoryLayer>();
-            //services.AddScoped<IProductCategoryBusiness, ProductCategoryBusiness>();
+			//services.AddScoped<IProductBusiness, ProductBusiness>();
+			//services.AddScoped<IStoreProductLayer, StoreProductLayer>();
+			//services.AddScoped<IStoreProductCategoryLayer, StoreProductCategoryLayer>();
+			//services.AddScoped<IProductCategoryBusiness, ProductCategoryBusiness>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+			services.AddDbContext<PorwalGeneralStoreContext>(options =>
+				options.UseSqlServer(Configuration.GetConnectionString("ConnectionStrings")));
+			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
