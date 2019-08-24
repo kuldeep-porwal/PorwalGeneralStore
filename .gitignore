@@ -27,3 +27,5 @@
 /PorwalGeneralStore/PorwalGeneralStore.XUnitTestUtility/bin/Debug/netcoreapp2.1
 /PorwalGeneralStore/PorwalGeneralStore.XUnitTestUtility/obj
 /PorwalGeneralStore/.vs/config
+/PorwalGeneralStore/.vs/PorwalGeneralStore/DesignTimeBuild
+/PorwalGeneralStore/PorwalGeneralStore.WebApp/bin/Debug/netcoreapp2.0
