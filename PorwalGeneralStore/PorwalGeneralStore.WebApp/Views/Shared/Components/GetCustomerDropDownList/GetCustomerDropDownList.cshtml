@@ -1,0 +1,9 @@
+﻿@model IEnumerable<PorwalGeneralStore.DataModel.Public.CustomerInfo>
+@{
+    string nameDDL = ViewBag.DropDownId;
+    IList<SelectListItem> DropDownValueList = Model.Select(x => new SelectListItem() { Text = x.CustomerName, Value = x.Id.ToString() }).ToList();
+}
+
+<div>
+    @Html.DropDownList(nameDDL, DropDownValueList, "Select Customer", new { @class = "form-control" })
+</div>

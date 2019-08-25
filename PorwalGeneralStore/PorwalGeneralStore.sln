@@ -17,8 +17,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PorwalGeneralStore.ThirdPar
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PorwalGeneralStore.Global", "PorwalGeneralStore.Global\PorwalGeneralStore.Global.csproj", "{8D6C434C-E9E7-4163-8BEE-FDF6AF5B279F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PorwalGeneralStore.CommonData", "PorwalGeneralStore.CommonData\PorwalGeneralStore.CommonData.csproj", "{6991A3A1-05A3-4194-AF71-77FE3995E78B}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "XunitTestProject", "XunitTestProject", "{01C75051-168B-4F68-8AE0-1BA34D114FFD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PorwalGeneralStore.XUnitTestBusiness", "PorwalGeneralStore.XUnitTestBusiness\PorwalGeneralStore.XUnitTestBusiness.csproj", "{BC236F61-A9E2-42F3-9910-95BCC9068F5F}"
@@ -35,7 +33,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sql", "Sql", "{A07E2DEB-40D
 		DBMigration.sql = DBMigration.sql
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PorwalGeneralStore.WebApp", "PorwalGeneralStore.WebApp\PorwalGeneralStore.WebApp.csproj", "{181967EB-3336-403D-8B6A-46F6DD12D689}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PorwalGeneralStore.WebApp", "PorwalGeneralStore.WebApp\PorwalGeneralStore.WebApp.csproj", "{9DFC25DF-B57E-4656-8A11-55D00E5B7113}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,10 +69,6 @@ Global
 		{8D6C434C-E9E7-4163-8BEE-FDF6AF5B279F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D6C434C-E9E7-4163-8BEE-FDF6AF5B279F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D6C434C-E9E7-4163-8BEE-FDF6AF5B279F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6991A3A1-05A3-4194-AF71-77FE3995E78B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6991A3A1-05A3-4194-AF71-77FE3995E78B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6991A3A1-05A3-4194-AF71-77FE3995E78B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6991A3A1-05A3-4194-AF71-77FE3995E78B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BC236F61-A9E2-42F3-9910-95BCC9068F5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BC236F61-A9E2-42F3-9910-95BCC9068F5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC236F61-A9E2-42F3-9910-95BCC9068F5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -83,10 +77,10 @@ Global
 		{A67CA559-96AF-4C5A-B0A4-2EC5ED28E70F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A67CA559-96AF-4C5A-B0A4-2EC5ED28E70F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A67CA559-96AF-4C5A-B0A4-2EC5ED28E70F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{181967EB-3336-403D-8B6A-46F6DD12D689}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{181967EB-3336-403D-8B6A-46F6DD12D689}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{181967EB-3336-403D-8B6A-46F6DD12D689}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{181967EB-3336-403D-8B6A-46F6DD12D689}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DFC25DF-B57E-4656-8A11-55D00E5B7113}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DFC25DF-B57E-4656-8A11-55D00E5B7113}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DFC25DF-B57E-4656-8A11-55D00E5B7113}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DFC25DF-B57E-4656-8A11-55D00E5B7113}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

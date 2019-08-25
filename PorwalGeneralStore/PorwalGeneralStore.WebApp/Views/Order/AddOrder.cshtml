@@ -1,0 +1,39 @@
+﻿@model PorwalGeneralStore.DataModel.Public.AddStoreOrderModel
+@using PorwalGeneralStore.WebApp.Components;
+@{
+    ViewData["Title"] = "AddOrder";
+}
+
+<h2>AddOrder</h2>
+
+<h4>AddStoreOrderModel</h4>
+<hr />
+<div class="row">
+    @Model
+    <div class="col-md-4">
+        <form asp-action="AddOrder">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CustomerName" class="control-label"></label>
+                @await Component.InvokeAsync(nameof(GetCustomerDropDownList), new { DropDownId = nameof(@Model.CustomerName) });
+                <span asp-validation-for="CustomerName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderTotal" class="control-label"></label>
+                <input asp-for="OrderTotal" class="form-control" />
+                <span asp-validation-for="OrderTotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

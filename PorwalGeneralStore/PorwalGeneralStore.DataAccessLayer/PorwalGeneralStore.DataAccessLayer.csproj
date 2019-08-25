@@ -15,9 +15,4 @@
     <ProjectReference Include="..\PorwalGeneralStore.Utility\PorwalGeneralStore.Utility.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Implementation\" />
-    <Folder Include="Interface\" />
-  </ItemGroup>
-
 </Project>
