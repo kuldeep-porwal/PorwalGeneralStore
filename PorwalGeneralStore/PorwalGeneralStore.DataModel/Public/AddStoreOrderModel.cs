@@ -6,7 +6,7 @@ namespace PorwalGeneralStore.DataModel.Public
 {
 	public class AddStoreOrderModel
 	{
-		public string CustomerName { get; set; }
+		public int CustomerId { get; set; }
 		public decimal OrderTotal { get; set; }
 		public List<AddStoreOrderItemModel> StoreOrderItems { get; set; }
 	}

@@ -30,3 +30,15 @@
 /PorwalGeneralStore/.vs/PorwalGeneralStore/DesignTimeBuild
 /PorwalGeneralStore/PorwalGeneralStore.WebApp/bin/Debug/netcoreapp2.0
 /PorwalGeneralStore/PorwalGeneralStore.WebApp/bin/Debug/netcoreapp2.1
+/PorwalGeneralStore/BaseWebApp/bin
+/PorwalGeneralStore/BaseWebApp/obj
+/PorwalGeneralStore/PorwalGeneralStore.BusinessLayer/bin/Debug/netcoreapp2.2
+/PorwalGeneralStore/PorwalGeneralStore.DataAccessLayer/bin/Debug/netcoreapp2.2
+/PorwalGeneralStore/PorwalGeneralStore.DataModel/bin/Debug/netcoreapp2.2
+/PorwalGeneralStore/PorwalGeneralStore.EdmxModel/bin/Debug/netcoreapp2.2
+/PorwalGeneralStore/PorwalGeneralStore.Global/bin/Debug/netcoreapp2.2
+/PorwalGeneralStore/PorwalGeneralStore.ThirdPartyIntegration/bin/Debug/netcoreapp2.2
+/PorwalGeneralStore/PorwalGeneralStore.Utility/bin/Debug/netcoreapp2.2
+/PorwalGeneralStore/PorwalGeneralStore.WebApi/bin
+/PorwalGeneralStore/PorwalGeneralStore.XUnitTestBusiness/bin/Debug/netcoreapp2.2
+/PorwalGeneralStore/PorwalGeneralStore.XUnitTestUtility/bin/Debug/netcoreapp2.2

@@ -101,11 +101,6 @@ namespace PorwalGeneralStore.EdmxModel
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getutcdate())");
 
-                entity.Property(e => e.CustomerName)
-                    .IsRequired()
-                    .HasMaxLength(500)
-                    .IsUnicode(false);
-
                 entity.Property(e => e.OrderTotal).HasColumnType("decimal(18, 0)");
 
                 entity.Property(e => e.PaymentMode)
@@ -119,6 +114,12 @@ namespace PorwalGeneralStore.EdmxModel
                     .HasDefaultValueSql("('Pending')");
 
                 entity.Property(e => e.UpdatedDate).HasColumnType("datetime");
+
+                entity.HasOne(d => d.Customer)
+                    .WithMany(p => p.StoreOrder)
+                    .HasForeignKey(d => d.CustomerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_StoreOrder_CustomerInfo");
             });
 
             modelBuilder.Entity<StoreOrderItem>(entity =>

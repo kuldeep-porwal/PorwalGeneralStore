@@ -11,7 +11,7 @@ namespace PorwalGeneralStore.EdmxModel
         }
 
         public long Id { get; set; }
-        public string CustomerName { get; set; }
+        public long CustomerId { get; set; }
         public decimal OrderTotal { get; set; }
         public int TotalItem { get; set; }
         public string PaymentStatus { get; set; }
@@ -19,6 +19,7 @@ namespace PorwalGeneralStore.EdmxModel
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
 
+        public virtual CustomerInfo Customer { get; set; }
         public virtual ICollection<StoreOrderItem> StoreOrderItem { get; set; }
     }
 }

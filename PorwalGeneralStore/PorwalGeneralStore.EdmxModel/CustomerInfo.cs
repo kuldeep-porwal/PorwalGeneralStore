@@ -5,9 +5,16 @@ namespace PorwalGeneralStore.EdmxModel
 {
     public partial class CustomerInfo
     {
+        public CustomerInfo()
+        {
+            StoreOrder = new HashSet<StoreOrder>();
+        }
+
         public long Id { get; set; }
         public string CustomerName { get; set; }
         public string Phone { get; set; }
         public string City { get; set; }
+
+        public virtual ICollection<StoreOrder> StoreOrder { get; set; }
     }
 }

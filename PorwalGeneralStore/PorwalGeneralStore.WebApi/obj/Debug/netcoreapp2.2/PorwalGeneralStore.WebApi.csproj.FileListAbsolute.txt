@@ -1,0 +1,17 @@
+H:\GitHub\PorwalGeneralStore\PorwalGeneralStore\PorwalGeneralStore.WebApi\bin\Debug\netcoreapp2.2\PorwalGeneralStore.WebApi.deps.json
+H:\GitHub\PorwalGeneralStore\PorwalGeneralStore\PorwalGeneralStore.WebApi\bin\Debug\netcoreapp2.2\PorwalGeneralStore.WebApi.runtimeconfig.json
+H:\GitHub\PorwalGeneralStore\PorwalGeneralStore\PorwalGeneralStore.WebApi\bin\Debug\netcoreapp2.2\PorwalGeneralStore.WebApi.runtimeconfig.dev.json
+H:\GitHub\PorwalGeneralStore\PorwalGeneralStore\PorwalGeneralStore.WebApi\bin\Debug\netcoreapp2.2\PorwalGeneralStore.WebApi.dll
+H:\GitHub\PorwalGeneralStore\PorwalGeneralStore\PorwalGeneralStore.WebApi\bin\Debug\netcoreapp2.2\PorwalGeneralStore.WebApi.pdb
+H:\GitHub\PorwalGeneralStore\PorwalGeneralStore\PorwalGeneralStore.WebApi\obj\Debug\netcoreapp2.2\PorwalGeneralStore.WebApi.csproj.CoreCompileInputs.cache
+H:\GitHub\PorwalGeneralStore\PorwalGeneralStore\PorwalGeneralStore.WebApi\obj\Debug\netcoreapp2.2\PorwalGeneralStore.WebApi.RazorAssemblyInfo.cache
+H:\GitHub\PorwalGeneralStore\PorwalGeneralStore\PorwalGeneralStore.WebApi\obj\Debug\netcoreapp2.2\PorwalGeneralStore.WebApi.RazorAssemblyInfo.cs
+H:\GitHub\PorwalGeneralStore\PorwalGeneralStore\PorwalGeneralStore.WebApi\obj\Debug\netcoreapp2.2\PorwalGeneralStore.WebApi.AssemblyInfoInputs.cache
+H:\GitHub\PorwalGeneralStore\PorwalGeneralStore\PorwalGeneralStore.WebApi\obj\Debug\netcoreapp2.2\PorwalGeneralStore.WebApi.AssemblyInfo.cs
+H:\GitHub\PorwalGeneralStore\PorwalGeneralStore\PorwalGeneralStore.WebApi\obj\Debug\netcoreapp2.2\PorwalGeneralStore.WebApi.RazorTargetAssemblyInfo.cache
+H:\GitHub\PorwalGeneralStore\PorwalGeneralStore\PorwalGeneralStore.WebApi\obj\Debug\netcoreapp2.2\PorwalGeneralStore.WebApi.dll
+H:\GitHub\PorwalGeneralStore\PorwalGeneralStore\PorwalGeneralStore.WebApi\obj\Debug\netcoreapp2.2\PorwalGeneralStore.WebApi.pdb
+H:\GitHub\PorwalGeneralStore\PorwalGeneralStore\PorwalGeneralStore.WebApi\bin\Debug\netcoreapp2.2\BaseWebApp.dll
+H:\GitHub\PorwalGeneralStore\PorwalGeneralStore\PorwalGeneralStore.WebApi\bin\Debug\netcoreapp2.2\BaseWebApp.pdb
+H:\GitHub\PorwalGeneralStore\PorwalGeneralStore\PorwalGeneralStore.WebApi\obj\Debug\netcoreapp2.2\PorwalGeneralStore.WebApi.csprojAssemblyReference.cache
+H:\GitHub\PorwalGeneralStore\PorwalGeneralStore\PorwalGeneralStore.WebApi\obj\Debug\netcoreapp2.2\PorwalGeneralStore.WebApi.csproj.CopyComplete
