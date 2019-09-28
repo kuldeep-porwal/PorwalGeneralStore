@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Email\" />
+    <Folder Include="Areas\Users\" />
+    <Folder Include="Areas\Sms\" />
+    <Folder Include="Areas\Orders\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
@@ -19,6 +23,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BaseWebApp\BaseWebApp.csproj" />
+    <ProjectReference Include="..\PorwalGeneralStore.BusinessLayer\PorwalGeneralStore.BusinessLayer.csproj" />
+    <ProjectReference Include="..\PorwalGeneralStore.DataModel\PorwalGeneralStore.DataModel.csproj" />
   </ItemGroup>
 
 </Project>

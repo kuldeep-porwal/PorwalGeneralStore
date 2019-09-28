@@ -6,10 +6,16 @@ using BaseWebApp;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using PorwalGeneralStore.BusinessLayer.Implementation.Products;
+using PorwalGeneralStore.BusinessLayer.Interface.Products;
+using PorwalGeneralStore.DataAccessLayer.Implementation.Products;
+using PorwalGeneralStore.DataAccessLayer.Interface.Products;
+using PorwalGeneralStore.EdmxModel;
 using Serilog;
 
 namespace PorwalGeneralStore.WebApi
@@ -27,6 +33,12 @@ namespace PorwalGeneralStore.WebApi
             BaseConfigureServices(services);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             _logger.LogInformation("Configuring Services Finished");
+
+            services.AddDbContext<PorwalGeneralStoreContext>(options =>
+        options.UseSqlServer(Configuration.GetConnectionString("ConnectionStrings")));
+
+            services.AddScoped<IProductBiz, ProductBiz>();
+            services.AddScoped<IProductLayer, ProductLayer>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

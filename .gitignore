@@ -42,3 +42,14 @@
 /PorwalGeneralStore/PorwalGeneralStore.WebApi/bin
 /PorwalGeneralStore/PorwalGeneralStore.XUnitTestBusiness/bin/Debug/netcoreapp2.2
 /PorwalGeneralStore/PorwalGeneralStore.XUnitTestUtility/bin/Debug/netcoreapp2.2
+/PorwalGeneralStore/PorwalGeneralStore.BusinessLayer/bin/Release/netcoreapp2.2
+/PorwalGeneralStore/PorwalGeneralStore.DataAccessLayer/bin/Release/netcoreapp2.2
+/PorwalGeneralStore/PorwalGeneralStore.DataModel/bin/Release/netcoreapp2.2
+/PorwalGeneralStore/PorwalGeneralStore.EdmxModel/bin/Release/netcoreapp2.2
+/PorwalGeneralStore/PorwalGeneralStore.Global/bin/Release/netcoreapp2.2
+/PorwalGeneralStore/PorwalGeneralStore.Utility/bin/Release/netcoreapp2.2
+/PorwalGeneralStore/PorwalGeneralStore.XUnitTestProductController/bin/Debug/netcoreapp2.2
+/PorwalGeneralStore/PorwalGeneralStore.XUnitTestProductController/obj
+/PorwalGeneralStore/XUnitTestProductBizUnitTest/bin/Debug/netcoreapp2.2
+/PorwalGeneralStore/XUnitTestProductBizUnitTest/obj
+/.vs
