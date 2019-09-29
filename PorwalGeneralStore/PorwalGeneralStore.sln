@@ -39,11 +39,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaseWebApp", "BaseWebApp\Ba
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ControllerUnitTest", "ControllerUnitTest", "{AA3DB5F4-27EE-4948-BDA8-D3B347B63639}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PorwalGeneralStore.XUnitTestProductController", "PorwalGeneralStore.XUnitTestProductController\PorwalGeneralStore.XUnitTestProductController.csproj", "{27A4136C-D225-4441-BA9C-CF1DE8BB4FB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PorwalGeneralStore.XUnitTestProductController", "PorwalGeneralStore.XUnitTestProductController\PorwalGeneralStore.XUnitTestProductController.csproj", "{27A4136C-D225-4441-BA9C-CF1DE8BB4FB5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BusinessUnitTest", "BusinessUnitTest", "{A9CB8AFC-207C-4DC1-B639-D95D0DDAB3AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitTestProductBizUnitTest", "XUnitTestProductBizUnitTest\XUnitTestProductBizUnitTest.csproj", "{6BBF80DA-5433-4931-A657-6DEAF554CF14}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitTestProductBizUnitTest", "XUnitTestProductBizUnitTest\XUnitTestProductBizUnitTest.csproj", "{6BBF80DA-5433-4931-A657-6DEAF554CF14}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccessLayerUnitTest", "DataAccessLayerUnitTest", "{986962E4-E31F-4B9D-A35A-6954E08B5267}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitTestProductDataAccessLayerUnitTest", "XUnitTestProductDataAccessLayerUnitTest\XUnitTestProductDataAccessLayerUnitTest.csproj", "{6952EA35-1C83-4A62-9793-C6E44A14696A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InMemoryDbContext", "InMemoryDbContext\InMemoryDbContext.csproj", "{269BAFD9-4F2D-49DE-82C8-4D528BCA6721}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -103,6 +109,14 @@ Global
 		{6BBF80DA-5433-4931-A657-6DEAF554CF14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BBF80DA-5433-4931-A657-6DEAF554CF14}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BBF80DA-5433-4931-A657-6DEAF554CF14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6952EA35-1C83-4A62-9793-C6E44A14696A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6952EA35-1C83-4A62-9793-C6E44A14696A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6952EA35-1C83-4A62-9793-C6E44A14696A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6952EA35-1C83-4A62-9793-C6E44A14696A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{269BAFD9-4F2D-49DE-82C8-4D528BCA6721}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{269BAFD9-4F2D-49DE-82C8-4D528BCA6721}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{269BAFD9-4F2D-49DE-82C8-4D528BCA6721}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{269BAFD9-4F2D-49DE-82C8-4D528BCA6721}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -115,6 +129,9 @@ Global
 		{27A4136C-D225-4441-BA9C-CF1DE8BB4FB5} = {AA3DB5F4-27EE-4948-BDA8-D3B347B63639}
 		{A9CB8AFC-207C-4DC1-B639-D95D0DDAB3AB} = {01C75051-168B-4F68-8AE0-1BA34D114FFD}
 		{6BBF80DA-5433-4931-A657-6DEAF554CF14} = {A9CB8AFC-207C-4DC1-B639-D95D0DDAB3AB}
+		{986962E4-E31F-4B9D-A35A-6954E08B5267} = {01C75051-168B-4F68-8AE0-1BA34D114FFD}
+		{6952EA35-1C83-4A62-9793-C6E44A14696A} = {986962E4-E31F-4B9D-A35A-6954E08B5267}
+		{269BAFD9-4F2D-49DE-82C8-4D528BCA6721} = {01C75051-168B-4F68-8AE0-1BA34D114FFD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E51BCA3F-CC48-4DB6-B5ED-F3F761888795}

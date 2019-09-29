@@ -17,6 +17,7 @@ namespace PorwalGeneralStore.EdmxModel
 
         public virtual DbSet<CustomerInfo> CustomerInfo { get; set; }
         public virtual DbSet<StoreItem> StoreItem { get; set; }
+        public virtual DbSet<StoreItemCategory> StoreItemCategory { get; set; }
         public virtual DbSet<StoreOrder> StoreOrder { get; set; }
         public virtual DbSet<StoreOrderItem> StoreOrderItem { get; set; }
 
@@ -24,8 +25,7 @@ namespace PorwalGeneralStore.EdmxModel
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-AT1V78F;Database=PorwalGeneralStore;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Name=ConnectionStrings");
             }
         }
 
@@ -91,10 +91,34 @@ namespace PorwalGeneralStore.EdmxModel
                     .IsUnicode(false);
 
                 entity.Property(e => e.UpdatedDate).HasColumnType("datetime");
+
+                entity.HasOne(d => d.Category)
+                    .WithMany(p => p.StoreItem)
+                    .HasForeignKey(d => d.CategoryId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_StoreItem_StoreItemCategory");
+            });
+
+            modelBuilder.Entity<StoreItemCategory>(entity =>
+            {
+                entity.Property(e => e.CreatedDate)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getutcdate())");
+
+                entity.Property(e => e.IsActive).HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UpdatedDate).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<StoreOrder>(entity =>
             {
+                entity.HasIndex(e => e.CustomerId);
+
                 entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.CreatedDate)
@@ -124,6 +148,10 @@ namespace PorwalGeneralStore.EdmxModel
 
             modelBuilder.Entity<StoreOrderItem>(entity =>
             {
+                entity.HasIndex(e => e.ItemId);
+
+                entity.HasIndex(e => e.OrderId);
+
                 entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.CreatedDate)

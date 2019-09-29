@@ -8,7 +8,7 @@ namespace PorwalGeneralStore.XUnitTestProductController
 {
     public class BaseProductControllerUnitTest
     {
-        private ProductController productController;
+        private readonly ProductController productController;
 
         public BaseProductControllerUnitTest()
         {

@@ -16,6 +16,79 @@ namespace PorwalGeneralStore.BusinessLayer.Implementation.Products
         {
             _productLayer = productLayer;
         }
+
+        public BulkProductResponse ReadMultipleProduct(int page = 1, int pageSize = 50, long? categoryId = null)
+        {
+            BulkProductResponse bulkProductResponse = new BulkProductResponse()
+            {
+                StatusCode = 200
+            };
+
+            try
+            {
+                if (page <= 0)
+                {
+                    bulkProductResponse.StatusCode = 400;
+                    bulkProductResponse.ErrorList = new List<BulkProductValidationResponse>()
+                    {
+                        new BulkProductValidationResponse()
+                        {
+                            Code=1001,
+                            Message="Invalid page value, must be greater then 0."
+                        }
+                    };
+                    return bulkProductResponse;
+                }
+
+                if (pageSize < 50)
+                {
+                    bulkProductResponse.StatusCode = 400;
+                    bulkProductResponse.ErrorList = new List<BulkProductValidationResponse>()
+                    {
+                        new BulkProductValidationResponse()
+                        {
+                            Code=1001,
+                            Message="Invalid pageSize value, must be greater then or equal to 50."
+                        }
+                    };
+                    return bulkProductResponse;
+                }
+
+                if (categoryId != null &&
+                    categoryId.Value == 0)
+                {
+                    bulkProductResponse.StatusCode = 400;
+                    bulkProductResponse.ErrorList = new List<BulkProductValidationResponse>()
+                    {
+                        new BulkProductValidationResponse()
+                        {
+                            Code=1001,
+                            Message="Invalid CategoryId value, must be null or valid category id."
+                        }
+                    };
+                    return bulkProductResponse;
+                }
+
+                List<Item> itemList = _productLayer.ReadMultipleProduct(page, pageSize, categoryId);
+                bulkProductResponse.StatusCode = 200;
+                bulkProductResponse.Products = itemList;
+            }
+            catch (Exception ex)
+            {
+                bulkProductResponse.StatusCode = 400;
+                bulkProductResponse.ErrorList = new List<BulkProductValidationResponse>()
+                    {
+                        new BulkProductValidationResponse()
+                        {
+                            Code=1001,
+                            Message=ex.Message
+                        }
+                    };
+            }
+
+            return bulkProductResponse;
+        }
+
         public SingleProductResponse ReadSingleProduct(long productId)
         {
             SingleProductResponse singleProductResponse = new SingleProductResponse()
@@ -65,10 +138,9 @@ namespace PorwalGeneralStore.BusinessLayer.Implementation.Products
                     new SingleProductValidationResponse()
                     {
                         Code=101,
-                        Message="Error While Retriving Product"
+                        Message="Error While Retriving Product" + ex.Message
                     }
                 };
-                // TODO
             }
             return singleProductResponse;
         }

@@ -15,6 +15,7 @@ namespace PorwalGeneralStore.EdmxModel
         public string Title { get; set; }
         public string Description { get; set; }
         public string Sku { get; set; }
+        public long CategoryId { get; set; }
         public decimal CostPrice { get; set; }
         public decimal SellingPrice { get; set; }
         public long Qty { get; set; }
@@ -24,6 +25,7 @@ namespace PorwalGeneralStore.EdmxModel
         public DateTime? UpdatedDate { get; set; }
         public DateTime? PublishedDate { get; set; }
 
+        public virtual StoreItemCategory Category { get; set; }
         public virtual ICollection<StoreOrderItem> StoreOrderItem { get; set; }
     }
 }

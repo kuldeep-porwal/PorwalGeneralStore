@@ -26,5 +26,12 @@ namespace PorwalGeneralStore.WebApi.Areas.Products
             SingleProductResponse response = _productBiz.ReadSingleProduct(productId);
             return Ok(response);
         }
+
+        [HttpGet]
+        public ActionResult<BulkProductResponse> Get(long? categoryId, int page = 1, int pageSize = 50)
+        {
+            BulkProductResponse response = _productBiz.ReadMultipleProduct(page, pageSize, categoryId);
+            return Ok(response);
+        }
     }
 }

@@ -5,10 +5,11 @@ namespace BaseWebApp
 {
     public class LoggingActionFilter : ActionFilterAttribute
     {
-        ILogger _logger;
+        ILogger _logger=null;
         bool _isLogRequest = true;
         public LoggingActionFilter(bool isLogRequest = true)
         {
+            _logger = null;
             _isLogRequest = isLogRequest;
         }
         public override void OnActionExecuting(ActionExecutingContext context)

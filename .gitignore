@@ -54,3 +54,7 @@
 /PorwalGeneralStore/XUnitTestProductBizUnitTest/obj
 /.vs
 /PorwalGeneralStore/PorwalGeneralStore.WebApi/obj
+/PorwalGeneralStore/InMemoryDbContext/bin/Debug/netcoreapp2.2
+/PorwalGeneralStore/InMemoryDbContext/obj
+/PorwalGeneralStore/XUnitTestProductDataAccessLayerUnitTest/bin/Debug/netcoreapp2.2
+/PorwalGeneralStore/XUnitTestProductDataAccessLayerUnitTest/obj
