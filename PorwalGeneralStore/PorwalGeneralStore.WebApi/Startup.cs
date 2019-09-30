@@ -13,8 +13,10 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using PorwalGeneralStore.BusinessLayer.Implementation.Products;
 using PorwalGeneralStore.BusinessLayer.Interface.Products;
+using PorwalGeneralStore.BusinessLayer.Interface.Users;
 using PorwalGeneralStore.DataAccessLayer.Implementation.Products;
 using PorwalGeneralStore.DataAccessLayer.Interface.Products;
+using PorwalGeneralStore.DataAccessLayer.Interface.Users;
 using PorwalGeneralStore.EdmxModel;
 using Serilog;
 
@@ -39,6 +41,9 @@ namespace PorwalGeneralStore.WebApi
 
             services.AddScoped<IProductBiz, ProductBiz>();
             services.AddScoped<IProductLayer, ProductLayer>();
+
+            services.AddScoped<IUserBiz, UserBiz>();
+            services.AddScoped<IUserLayer, UserLayer>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

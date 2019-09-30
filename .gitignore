@@ -69,3 +69,6 @@
 /PorwalGeneralStore/XunitTestProject/InMemoryDbContext/obj
 /PorwalGeneralStore/XunitTestProject/PorwalGeneralStore.XUnitTestUtility/bin/Debug
 /PorwalGeneralStore/XunitTestProject/PorwalGeneralStore.XUnitTestUtility/obj
+/PorwalGeneralStore/XunitTestProject/BusinessUnitTest/XUnitTestUserBizUnitTest/bin/Debug/netcoreapp2.2
+/PorwalGeneralStore/XunitTestProject/DataAccessLayerUnitTest/XUnitTestUserDataAccessLayerUnitTest/obj
+/PorwalGeneralStore/XunitTestProject/DataAccessLayerUnitTest/XUnitTestUserDataAccessLayerUnitTest/bin/Debug/netcoreapp2.2

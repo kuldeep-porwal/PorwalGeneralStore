@@ -25,7 +25,7 @@ namespace PorwalGeneralStore.EdmxModel
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Name=ConnectionStrings");
+                optionsBuilder.UseSqlServer("name=ConnectionStrings");
             }
         }
 
@@ -44,6 +44,21 @@ namespace PorwalGeneralStore.EdmxModel
                 entity.Property(e => e.CustomerName)
                     .IsRequired()
                     .HasMaxLength(500)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.FirstName)
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.LastName)
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Password)
+                    .IsRequired()
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Phone)

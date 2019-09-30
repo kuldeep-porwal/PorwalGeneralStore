@@ -49,7 +49,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PorwalGeneralStore.XUnitTes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitTestProductDataAccessLayerUnitTest", "XunitTestProject\DataAccessLayerUnitTest\XUnitTestProductDataAccessLayerUnitTest\XUnitTestProductDataAccessLayerUnitTest.csproj", "{571B50F6-48F2-44CF-8096-C3D52492C5F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitTestUserBizUnitTest", "XunitTestProject\BusinessUnitTest\XUnitTestUserBizUnitTest\XUnitTestUserBizUnitTest.csproj", "{C7716EA5-730E-409E-8A0B-C074A49B0E31}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitTestUserBizUnitTest", "XunitTestProject\BusinessUnitTest\XUnitTestUserBizUnitTest\XUnitTestUserBizUnitTest.csproj", "{C7716EA5-730E-409E-8A0B-C074A49B0E31}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitTestUserDataAccessLayerUnitTest", "XunitTestProject\DataAccessLayerUnitTest\XUnitTestUserDataAccessLayerUnitTest\XUnitTestUserDataAccessLayerUnitTest.csproj", "{6F91ACDC-AB9A-43FA-B513-C97D9B9F5A7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -117,6 +119,10 @@ Global
 		{C7716EA5-730E-409E-8A0B-C074A49B0E31}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7716EA5-730E-409E-8A0B-C074A49B0E31}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7716EA5-730E-409E-8A0B-C074A49B0E31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F91ACDC-AB9A-43FA-B513-C97D9B9F5A7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F91ACDC-AB9A-43FA-B513-C97D9B9F5A7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F91ACDC-AB9A-43FA-B513-C97D9B9F5A7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F91ACDC-AB9A-43FA-B513-C97D9B9F5A7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -132,6 +138,7 @@ Global
 		{B4C117D4-E137-4473-8539-276C04886C3F} = {1C0B9008-1DE3-46CC-B2F5-B75A49B07FD5}
 		{571B50F6-48F2-44CF-8096-C3D52492C5F0} = {D96A0FBD-CF72-44CC-9397-19979F35D5DE}
 		{C7716EA5-730E-409E-8A0B-C074A49B0E31} = {2BFC22A7-AD61-4A19-9435-58957D6122E6}
+		{6F91ACDC-AB9A-43FA-B513-C97D9B9F5A7E} = {D96A0FBD-CF72-44CC-9397-19979F35D5DE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E51BCA3F-CC48-4DB6-B5ED-F3F761888795}

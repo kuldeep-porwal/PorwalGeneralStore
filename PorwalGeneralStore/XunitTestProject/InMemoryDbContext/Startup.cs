@@ -33,6 +33,12 @@ namespace InMemoryDbContext
                 _inMemoryContext.StoreItemCategory.AddRange(StoreItemCategoryData.GetStoreItemsCategories());
                 _inMemoryContext.SaveChanges();
             }
+
+            if (!_inMemoryContext.CustomerInfo.Any())
+            {
+                _inMemoryContext.CustomerInfo.AddRange(CustomerInfoData.GetCustomerInformation());
+                _inMemoryContext.SaveChanges();
+            }
         }
     }
 }
