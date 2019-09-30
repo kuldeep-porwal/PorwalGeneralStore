@@ -14,9 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\InMemoryDbContext\InMemoryDbContext.csproj" />
-    <ProjectReference Include="..\PorwalGeneralStore.DataAccessLayer\PorwalGeneralStore.DataAccessLayer.csproj" />
-    <ProjectReference Include="..\PorwalGeneralStore.EdmxModel\PorwalGeneralStore.EdmxModel.csproj" />
+    <ProjectReference Include="..\..\..\PorwalGeneralStore.BusinessLayer\PorwalGeneralStore.BusinessLayer.csproj" />
   </ItemGroup>
 
 </Project>

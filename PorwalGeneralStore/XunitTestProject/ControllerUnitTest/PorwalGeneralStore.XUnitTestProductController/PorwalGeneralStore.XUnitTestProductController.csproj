@@ -14,8 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PorwalGeneralStore.BusinessLayer\PorwalGeneralStore.BusinessLayer.csproj" />
-    <ProjectReference Include="..\PorwalGeneralStore.WebApi\PorwalGeneralStore.WebApi.csproj" />
+    <ProjectReference Include="..\..\..\PorwalGeneralStore.BusinessLayer\PorwalGeneralStore.BusinessLayer.csproj" />
+    <ProjectReference Include="..\..\..\PorwalGeneralStore.DataAccessLayer\PorwalGeneralStore.DataAccessLayer.csproj" />
+    <ProjectReference Include="..\..\..\PorwalGeneralStore.WebApi\PorwalGeneralStore.WebApi.csproj" />
   </ItemGroup>
 
 </Project>
