@@ -10,7 +10,9 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.CommandLine" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.IdentityModel.Logging" Version="5.5.0" />
     <PackageReference Include="SonarAnalyzer.CSharp" Version="7.13.0.8313" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.5.0" />
   </ItemGroup>
 
   <ItemGroup>

@@ -8,6 +8,6 @@ namespace PorwalGeneralStore.Utility.JWTTokenGenerator
 {
     public interface IJwtBuilder
     {
-        JwtTokenResponse GetJWTToken(Claim[] claims, string issuer = null, string audience = null, DateTime? expires = null);
+        JwtTokenResponse GetJWTToken(Dictionary<string, string> claims, string audience = null, DateTime? expires = null);
     }
 }
