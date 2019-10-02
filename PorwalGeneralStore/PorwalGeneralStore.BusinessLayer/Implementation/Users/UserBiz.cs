@@ -2,9 +2,11 @@
 using PorwalGeneralStore.DataModel.Public.Business;
 using PorwalGeneralStore.DataModel.Request.Users;
 using PorwalGeneralStore.DataModel.Response.Users;
+using PorwalGeneralStore.Utility;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace PorwalGeneralStore.BusinessLayer.Interface.Users
 {
@@ -116,6 +118,187 @@ namespace PorwalGeneralStore.BusinessLayer.Interface.Users
 
             }
             return token;
+        }
+
+        public SignUpFormResponse RegistorUser(SignUpForm signUpForm)
+        {
+            SignUpFormResponse signUpFormResponse = new SignUpFormResponse()
+            {
+                StatusCode = 200
+            };
+            try
+            {
+
+                if (signUpForm == null)
+                {
+                    signUpFormResponse.StatusCode = 400;
+                    signUpFormResponse.ErrorList = new List<SignUpValidationResponse>()
+                    {
+                        new SignUpValidationResponse()
+                        {
+                            Code=1001,
+                            FieldName=nameof(signUpForm),
+                            Message=nameof(signUpForm)+" can't be null"
+                        }
+                    };
+                    return signUpFormResponse;
+                }
+
+                if (string.IsNullOrWhiteSpace(signUpForm.FirstName))
+                {
+                    signUpFormResponse.StatusCode = 400;
+                    signUpFormResponse.ErrorList = new List<SignUpValidationResponse>()
+                    {
+                        new SignUpValidationResponse()
+                        {
+                            Code=1001,
+                            FieldName=nameof(signUpForm.FirstName),
+                            Message=nameof(signUpForm.FirstName)+" can't be blank"
+                        }
+                    };
+                    return signUpFormResponse;
+                }
+
+                if (string.IsNullOrWhiteSpace(signUpForm.LastName))
+                {
+                    signUpFormResponse.StatusCode = 400;
+                    signUpFormResponse.ErrorList = new List<SignUpValidationResponse>()
+                    {
+                        new SignUpValidationResponse()
+                        {
+                            Code=1001,
+                            FieldName=nameof(signUpForm.LastName),
+                            Message=nameof(signUpForm.LastName)+" can't be blank"
+                        }
+                    };
+                    return signUpFormResponse;
+                }
+
+                if (string.IsNullOrWhiteSpace(signUpForm.UserName))
+                {
+                    signUpFormResponse.StatusCode = 400;
+                    signUpFormResponse.ErrorList = new List<SignUpValidationResponse>()
+                    {
+                        new SignUpValidationResponse()
+                        {
+                            Code=1001,
+                            FieldName=nameof(signUpForm.UserName),
+                            Message=nameof(signUpForm.UserName)+" can't be blank"
+                        }
+                    };
+                    return signUpFormResponse;
+                }
+
+                if (string.IsNullOrWhiteSpace(signUpForm.Password))
+                {
+                    signUpFormResponse.StatusCode = 400;
+                    signUpFormResponse.ErrorList = new List<SignUpValidationResponse>()
+                    {
+                        new SignUpValidationResponse()
+                        {
+                            Code=1001,
+                            FieldName=nameof(signUpForm.Password),
+                            Message=nameof(signUpForm.Password)+" can't be blank"
+                        }
+                    };
+                    return signUpFormResponse;
+                }
+
+                if (string.IsNullOrWhiteSpace(signUpForm.City))
+                {
+                    signUpFormResponse.StatusCode = 400;
+                    signUpFormResponse.ErrorList = new List<SignUpValidationResponse>()
+                    {
+                        new SignUpValidationResponse()
+                        {
+                            Code=1001,
+                            FieldName=nameof(signUpForm.City),
+                            Message=nameof(signUpForm.City)+" can't be blank"
+                        }
+                    };
+                    return signUpFormResponse;
+                }
+
+                if (string.IsNullOrWhiteSpace(signUpForm.MobileNumber))
+                {
+                    signUpFormResponse.StatusCode = 400;
+                    signUpFormResponse.ErrorList = new List<SignUpValidationResponse>()
+                    {
+                        new SignUpValidationResponse()
+                        {
+                            Code=1001,
+                            FieldName=nameof(signUpForm.MobileNumber),
+                            Message=nameof(signUpForm.MobileNumber)+" can't be blank"
+                        }
+                    };
+                    return signUpFormResponse;
+                }
+
+                if (!Regex.IsMatch(signUpForm.MobileNumber, RegexPattern.mobile_number_validation_Patterns.GetCombinedPattern()))
+                {
+                    signUpFormResponse.StatusCode = 400;
+                    signUpFormResponse.ErrorList = new List<SignUpValidationResponse>()
+                    {
+                        new SignUpValidationResponse()
+                        {
+                            Code=1001,
+                            FieldName=nameof(signUpForm.MobileNumber),
+                            Message=nameof(signUpForm.MobileNumber)+" should be valid. Format -: xxxxxxxxxx | +xxxxxxxxxxxx | +xx xx xxxxxxxx | xxx-xxxx-xxxx"
+                        }
+                    };
+                    return signUpFormResponse;
+                }
+
+                bool isMobileNumberExist = _userLayer.isExistPhoneNumber(signUpForm.MobileNumber);
+                if (isMobileNumberExist)
+                {
+                    signUpFormResponse.StatusCode = 400;
+                    signUpFormResponse.ErrorList = new List<SignUpValidationResponse>()
+                    {
+                        new SignUpValidationResponse()
+                        {
+                            Code=1001,
+                            FieldName=nameof(signUpForm.MobileNumber),
+                            Message=nameof(signUpForm.MobileNumber)+" already exist , please use different number."
+                        }
+                    };
+                    return signUpFormResponse;
+                }
+
+                bool isRegisteredSuccessfully = _userLayer.RegisterUser(signUpForm);
+                if (isRegisteredSuccessfully)
+                {
+                    signUpFormResponse.StatusCode = 200;
+                    signUpFormResponse.ErrorList = null;
+                    signUpFormResponse.Message = "User is Successfully Registered.";
+                }
+                else
+                {
+                    signUpFormResponse.StatusCode = 400;
+                    signUpFormResponse.ErrorList = new List<SignUpValidationResponse>()
+                    {
+                        new SignUpValidationResponse()
+                        {
+                            Code=1001,
+                            Message="Error While creating account on server , please try after some time."
+                        }
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                signUpFormResponse.StatusCode = 400;
+                signUpFormResponse.ErrorList = new List<SignUpValidationResponse>()
+                    {
+                        new SignUpValidationResponse()
+                        {
+                            Code=1001,
+                            Message="Error While creating account on server , please try after some time."+ex.Message
+                        }
+                    };
+            }
+
+            return signUpFormResponse;
         }
     }
 }

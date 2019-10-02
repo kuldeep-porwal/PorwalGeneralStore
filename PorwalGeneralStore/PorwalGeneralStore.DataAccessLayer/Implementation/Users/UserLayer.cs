@@ -5,6 +5,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using System;
+using Microsoft.EntityFrameworkCore;
 
 namespace PorwalGeneralStore.DataAccessLayer.Interface.Users
 {
@@ -36,6 +37,27 @@ namespace PorwalGeneralStore.DataAccessLayer.Interface.Users
                 };
             }
             return userInformation;
+        }
+
+        public bool isExistPhoneNumber(string phoneNumber)
+        {
+            return context.CustomerInfo.Any(x => x.Phone.Equals(phoneNumber, StringComparison.OrdinalIgnoreCase));
+        }
+
+        public bool RegisterUser(SignUpForm signUpForm)
+        {
+            CustomerInfo customerInfo = new CustomerInfo()
+            {
+                CustomerName = signUpForm.UserName,
+                Phone = signUpForm.MobileNumber,
+                City = signUpForm.City,
+                FirstName = signUpForm.FirstName,
+                LastName = signUpForm.LastName,
+                Password = signUpForm.Password
+            };
+
+            context.Entry<CustomerInfo>(customerInfo).State = EntityState.Added;
+            return context.SaveChanges() > 0;
         }
     }
 }

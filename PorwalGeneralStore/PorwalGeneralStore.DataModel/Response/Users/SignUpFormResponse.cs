@@ -9,6 +9,9 @@ namespace PorwalGeneralStore.DataModel.Response.Users
     {
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
         public List<SignUpValidationResponse> ErrorList { get; set; }
+
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public string Message { get; set; }
     }
 
     public class SignUpValidationResponse : BaseValidationResponse

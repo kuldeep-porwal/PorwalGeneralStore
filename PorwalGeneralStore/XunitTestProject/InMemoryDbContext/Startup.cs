@@ -15,6 +15,7 @@ namespace InMemoryDbContext
         {
             var dbContextOptionsBuilder = new DbContextOptionsBuilder<PorwalGeneralStoreContext>()
                                 .UseInMemoryDatabase(databaseName: "PorwalGeneralStore")
+                                .EnableSensitiveDataLogging(true)
                                 .Options;
             _inMemoryContext = new PorwalGeneralStoreContext(dbContextOptionsBuilder);
             SeedingTestData();

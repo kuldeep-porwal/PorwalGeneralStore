@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using PorwalGeneralStore.BusinessLayer.Interface.Users;
 using PorwalGeneralStore.DataModel.Request.Users;
 using PorwalGeneralStore.DataModel.Response.Users;
 
@@ -14,10 +15,16 @@ namespace PorwalGeneralStore.WebApi.Areas.Users
     [Route("api/[controller]")]
     public class SignUpController : Controller
     {
+        private readonly IUserBiz _userBiz;
+        public SignUpController(IUserBiz userBiz)
+        {
+            _userBiz = userBiz;
+        }
+
         [HttpPost]
         public ActionResult<SignUpFormResponse> Post([FromBody]SignUpForm signUpForm)
         {
-            SignUpFormResponse signUpFormResponse = null;
+            SignUpFormResponse signUpFormResponse = _userBiz.RegistorUser(signUpForm);
             return Ok(signUpFormResponse);
         }
     }

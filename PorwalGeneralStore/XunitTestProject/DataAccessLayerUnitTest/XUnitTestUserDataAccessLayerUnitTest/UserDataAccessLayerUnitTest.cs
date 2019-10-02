@@ -5,6 +5,7 @@ using PorwalGeneralStore.DataModel.Request.Users;
 using PorwalGeneralStore.EdmxModel;
 using System.Linq;
 using Xunit;
+using System.Collections.Generic;
 
 namespace XUnitTestUserDataAccessLayerUnitTest
 {
@@ -60,6 +61,50 @@ namespace XUnitTestUserDataAccessLayerUnitTest
                 Password = password
             });
             Assert.Null(ActualResult);
+        }
+
+        [Theory(DisplayName = "DataAccessLayer - Get True is Mobile Number Exist False if not Exist")]
+        [InlineData("No Exist")]
+        [InlineData("Exist")]
+        public void UnitTest3(string mobileNumber)
+        {
+            var ExpectedResult = _porwalGeneralStoreContext
+                                  .CustomerInfo
+                                  .Any(x => x.Phone.Equals(mobileNumber, StringComparison.OrdinalIgnoreCase));
+            var ActualResult = _userLayer.isExistPhoneNumber(mobileNumber);
+            Assert.True(ActualResult == ExpectedResult);
+        }
+
+        [Theory(DisplayName = "DataAccessLayer -: save user in Database.")]
+        [MemberData(nameof(signUpFormData))]
+        public void UnitTest4(SignUpForm input)
+        {
+            var ExpectedResult = _porwalGeneralStoreContext
+                                  .CustomerInfo
+                                  .Any(x => x.Phone.Equals(input.MobileNumber, StringComparison.OrdinalIgnoreCase));
+            var ActualResult = _userLayer.RegisterUser(input);
+
+            Assert.True(ActualResult);
+            Assert.True(ExpectedResult);
+        }
+        public static IEnumerable<object[]> signUpFormData => new List<object[]>
+                                                                                {
+                                                                                    new object[] { GetTempSignupFormData },
+                                                                                };
+        public static SignUpForm GetTempSignupFormData
+        {
+            get
+            {
+                return new SignUpForm()
+                {
+                    FirstName = "FirstName",
+                    City = "City",
+                    LastName = "LastName",
+                    MobileNumber = "MobileNumber",
+                    Password = "Password",
+                    UserName = "UserName"
+                };
+            }
         }
     }
 }
