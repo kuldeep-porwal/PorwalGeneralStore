@@ -3,6 +3,7 @@ using PorwalGeneralStore.BusinessLayer.Interface.Users;
 using PorwalGeneralStore.DataAccessLayer.Interface.Users;
 using PorwalGeneralStore.DataModel.Public.Business;
 using PorwalGeneralStore.DataModel.Request.Users;
+using PorwalGeneralStore.Utility.JWTTokenGenerator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +16,12 @@ namespace XUnitTestUserBizUnitTest
     {
         private readonly IUserBiz _userBiz;
         private readonly Mock<IUserLayer> _userLayer;
+        private readonly Mock<IJwtBuilder> _jwtBuilder;
         public UserBizUnitTest()
         {
             _userLayer = new Mock<IUserLayer>();
-            _userBiz = new UserBiz(_userLayer.Object);
+            _jwtBuilder = new Mock<IJwtBuilder>();
+            _userBiz = new UserBiz(_userLayer.Object, _jwtBuilder.Object);
         }
 
         [Fact(DisplayName = "Business -: null Object Error ")]

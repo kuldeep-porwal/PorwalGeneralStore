@@ -18,6 +18,7 @@ using PorwalGeneralStore.DataAccessLayer.Implementation.Products;
 using PorwalGeneralStore.DataAccessLayer.Interface.Products;
 using PorwalGeneralStore.DataAccessLayer.Interface.Users;
 using PorwalGeneralStore.EdmxModel;
+using PorwalGeneralStore.Utility.JWTTokenGenerator;
 using Serilog;
 
 namespace PorwalGeneralStore.WebApi
@@ -44,6 +45,8 @@ namespace PorwalGeneralStore.WebApi
 
             services.AddScoped<IUserBiz, UserBiz>();
             services.AddScoped<IUserLayer, UserLayer>();
+
+            services.AddScoped<IJwtBuilder, JwtBuilder>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
