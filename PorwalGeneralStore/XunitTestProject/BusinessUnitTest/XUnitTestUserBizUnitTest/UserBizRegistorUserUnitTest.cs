@@ -142,6 +142,7 @@ namespace XUnitTestUserBizUnitTest
         public void UnitTest10(SignUpForm input)
         {
             _userLayer.Setup(x => x.isExistPhoneNumber(It.IsAny<string>())).Returns(false);
+            _userLayer.Setup(x => x.RegisterUser(It.IsAny<SignUpForm>())).Returns(true);
 
             var ActualResult = _userBiz.RegistorUser(input);
 
@@ -308,7 +309,7 @@ namespace XUnitTestUserBizUnitTest
                     FirstName = "FirstName",
                     City = "City",
                     LastName = "LastName",
-                    MobileNumber = "MobileNumber",
+                    MobileNumber = "0123456789",
                     Password = "Password",
                     UserName = "UserName"
                 };
