@@ -11,9 +11,9 @@ namespace XUnitTestUserDataAccessLayerUnitTest
 {
     public class UserDataAccessLayerUnitTest
     {
-        private readonly IUserLayer _userLayer;
-        private readonly PorwalGeneralStoreContext _porwalGeneralStoreContext;
-        public readonly Startup startup;
+        private IUserLayer _userLayer;
+        private PorwalGeneralStoreContext _porwalGeneralStoreContext;
+        public Startup startup;
         public UserDataAccessLayerUnitTest()
         {
             startup = new Startup();
@@ -79,10 +79,13 @@ namespace XUnitTestUserDataAccessLayerUnitTest
         [MemberData(nameof(signUpFormData))]
         public void UnitTest4(SignUpForm input)
         {
+            startup = new Startup("PorwalGeneralStore_RegisterUser_DB", false);
+            _porwalGeneralStoreContext = startup._inMemoryContext;
+            _userLayer = new UserLayer(_porwalGeneralStoreContext);
+            var ActualResult = _userLayer.RegisterUser(input);
             var ExpectedResult = _porwalGeneralStoreContext
                                   .CustomerInfo
                                   .Any(x => x.Phone.Equals(input.MobileNumber, StringComparison.OrdinalIgnoreCase));
-            var ActualResult = _userLayer.RegisterUser(input);
 
             Assert.True(ActualResult);
             Assert.True(ExpectedResult);
