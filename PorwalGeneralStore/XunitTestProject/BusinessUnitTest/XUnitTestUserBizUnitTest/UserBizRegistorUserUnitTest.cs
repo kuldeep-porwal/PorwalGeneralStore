@@ -303,9 +303,6 @@ namespace XUnitTestUserBizUnitTest
         public static IEnumerable<object[]> signUpFormDataWithValidMobileNumber => new List<object[]>
                                                                                 {
                                                                                     new object[] { GetTempSignupFormDataForMobileNumber("0123456789") },
-                                                                                    new object[] { GetTempSignupFormDataForMobileNumber("+910123456789") },
-                                                                                    new object[] { GetTempSignupFormDataForMobileNumber("+91 01 23456789") },
-                                                                                    new object[] { GetTempSignupFormDataForMobileNumber("012-3456-7890") },
                                                                                 };
         public static SignUpForm GetTempSignupFormData
         {

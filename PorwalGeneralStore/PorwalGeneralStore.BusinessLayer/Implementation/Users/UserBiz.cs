@@ -84,7 +84,7 @@ namespace PorwalGeneralStore.BusinessLayer.Interface.Users
                         {
                             Code=1001,
                             FieldName=nameof(loginForm.UserName),
-                            Message=nameof(loginForm.UserName)+" should be valid. Format -: xxxxxxxxxx | +xxxxxxxxxxxx | +xx xx xxxxxxxx | xxx-xxxx-xxxx"
+                            Message=nameof(loginForm.UserName)+" should be valid. Format -: xxxxxxxxxx "
                         }
                     };
                     return loginFormResponse;
@@ -334,7 +334,22 @@ namespace PorwalGeneralStore.BusinessLayer.Interface.Users
                         {
                             Code=1001,
                             FieldName=nameof(signUpForm.MobileNumber),
-                            Message=nameof(signUpForm.MobileNumber)+" should be valid. Format -: xxxxxxxxxx | +xxxxxxxxxxxx | +xx xx xxxxxxxx | xxx-xxxx-xxxx"
+                            Message=nameof(signUpForm.MobileNumber)+" should be valid. Format -: xxxxxxxxxx "
+                        }
+                    };
+                    return signUpFormResponse;
+                }
+
+                if (!Regex.IsMatch(signUpForm.Password, RegexPattern.password_validation_pattern))
+                {
+                    signUpFormResponse.StatusCode = 400;
+                    signUpFormResponse.ErrorList = new List<SignUpValidationResponse>()
+                    {
+                        new SignUpValidationResponse()
+                        {
+                            Code=1001,
+                            FieldName=nameof(signUpForm.Password),
+                            Message=nameof(signUpForm.Password)+" should be valid. Format -: atleast one uppercase,one lowercase, one special character and one digit "
                         }
                     };
                     return signUpFormResponse;
@@ -421,7 +436,7 @@ namespace PorwalGeneralStore.BusinessLayer.Interface.Users
                         new MobileNumberValidationResponse()
                         {
                             Code=1001,
-                            Message=nameof(mobileNumber)+" should be valid. Format -: xxxxxxxxxx | +xxxxxxxxxxxx | +xx xx xxxxxxxx | xxx-xxxx-xxxx"
+                            Message=nameof(mobileNumber)+" should be valid. Format -: xxxxxxxxxx "
                         }
                     };
                 return signUpFormResponse;
