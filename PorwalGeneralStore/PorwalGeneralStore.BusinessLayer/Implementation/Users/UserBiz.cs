@@ -300,5 +300,63 @@ namespace PorwalGeneralStore.BusinessLayer.Interface.Users
 
             return signUpFormResponse;
         }
+
+        public MobileNumberVerificationResponse VerifyUserAccount(string mobileNumber)
+        {
+            MobileNumberVerificationResponse signUpFormResponse = new MobileNumberVerificationResponse()
+            {
+                StatusCode = 200
+            };
+
+            if (string.IsNullOrWhiteSpace(mobileNumber))
+            {
+                signUpFormResponse.StatusCode = 400;
+                signUpFormResponse.ErrorList = new List<MobileNumberValidationResponse>()
+                    {
+                        new MobileNumberValidationResponse()
+                        {
+                            Code=1001,
+                            Message=nameof(mobileNumber)+" can't be blank"
+                        }
+                    };
+                return signUpFormResponse;
+            }
+
+            if (!Regex.IsMatch(mobileNumber, RegexPattern.mobile_number_validation_Patterns.GetCombinedPattern()))
+            {
+                signUpFormResponse.StatusCode = 400;
+                signUpFormResponse.ErrorList = new List<MobileNumberValidationResponse>()
+                    {
+                        new MobileNumberValidationResponse()
+                        {
+                            Code=1001,
+                            Message=nameof(mobileNumber)+" should be valid. Format -: xxxxxxxxxx | +xxxxxxxxxxxx | +xx xx xxxxxxxx | xxx-xxxx-xxxx"
+                        }
+                    };
+                return signUpFormResponse;
+            }
+
+            bool isMobileNumberExist = _userLayer.isExistPhoneNumber(mobileNumber);
+            if (isMobileNumberExist)
+            {
+                signUpFormResponse.StatusCode = 200;
+                signUpFormResponse.Message = "mobileNumber is exist";
+                return signUpFormResponse;
+            }
+            else
+            {
+                signUpFormResponse.StatusCode = 400;
+                signUpFormResponse.ErrorList = new List<MobileNumberValidationResponse>()
+                    {
+                        new MobileNumberValidationResponse()
+                        {
+                            Code=1001,
+                            Message=nameof(mobileNumber)+" not found."
+                        }
+                    };
+            }
+
+            return signUpFormResponse;
+        }
     }
 }

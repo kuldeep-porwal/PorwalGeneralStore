@@ -236,6 +236,58 @@ namespace XUnitTestUserBizUnitTest
             Assert.Null(ActualResult.ErrorList);
         }
 
+        [Theory(DisplayName = "Business -: Valid Response should come if mobile number is exist on server")]
+        [InlineData("0123456789")]
+        public void UnitTest17(string input)
+        {
+            _userLayer.Setup(x => x.isExistPhoneNumber(It.IsAny<string>())).Returns(true);
+            var ActualResult = _userBiz.VerifyUserAccount(input);
+
+            _userLayer.Verify(x => x.isExistPhoneNumber(input), Times.Once);
+            Assert.NotNull(ActualResult);
+            Assert.True(ActualResult.StatusCode == 200);
+            Assert.Equal("mobileNumber is exist", ActualResult.Message);
+            Assert.Null(ActualResult.ErrorList);
+        }
+
+        [Theory(DisplayName = "Business -: Validation Response should come if mobile number is not exist on server")]
+        [InlineData("0123456789")]
+        public void UnitTest18(string input)
+        {
+            _userLayer.Setup(x => x.isExistPhoneNumber(It.IsAny<string>())).Returns(false);
+            var ActualResult = _userBiz.VerifyUserAccount(input);
+
+            _userLayer.Verify(x => x.isExistPhoneNumber(input), Times.Once);
+            Assert.NotNull(ActualResult);
+            Assert.True(ActualResult.StatusCode == 400);
+            Assert.True(string.IsNullOrWhiteSpace(ActualResult.Message));
+            Assert.NotNull(ActualResult.ErrorList);
+            Assert.True(ActualResult.ErrorList.Count > 0);
+        }
+
+        [Theory(DisplayName = "Business -: Validation Response should come if mobile number is not valid")]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData("   ")]
+        [InlineData("123456677")]
+        [InlineData("not valide")]
+        [InlineData("+784512dere1d1")]
+        [InlineData("fcc dd d d d")]
+        [InlineData("4zzx4ss4s4ss4")]
+        [InlineData("9874125000w")]
+        public void UnitTest19(string input)
+        {
+            _userLayer.Setup(x => x.isExistPhoneNumber(It.IsAny<string>())).Returns(false);
+            var ActualResult = _userBiz.VerifyUserAccount(input);
+
+            _userLayer.Verify(x => x.isExistPhoneNumber(input), Times.Never());
+            Assert.NotNull(ActualResult);
+            Assert.True(ActualResult.StatusCode == 400);
+            Assert.True(string.IsNullOrWhiteSpace(ActualResult.Message));
+            Assert.NotNull(ActualResult.ErrorList);
+            Assert.True(ActualResult.ErrorList.Count > 0);
+        }
+
         public static IEnumerable<object[]> signUpFormData => new List<object[]>
                                                                                 {
                                                                                     new object[] { GetTempSignupFormData },

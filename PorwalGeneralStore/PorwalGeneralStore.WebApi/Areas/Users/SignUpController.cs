@@ -27,5 +27,12 @@ namespace PorwalGeneralStore.WebApi.Areas.Users
             SignUpFormResponse signUpFormResponse = _userBiz.RegistorUser(signUpForm);
             return Ok(signUpFormResponse);
         }
+
+        [HttpGet("VerifyUserAccount")]
+        public ActionResult<MobileNumberVerificationResponse> VerifyUserAccount(string mobileNumber)
+        {
+            MobileNumberVerificationResponse mobileNumberVerificationResponse = _userBiz.VerifyUserAccount(mobileNumber);
+            return Ok(mobileNumberVerificationResponse);
+        }
     }
 }

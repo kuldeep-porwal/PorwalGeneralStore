@@ -11,5 +11,7 @@ namespace PorwalGeneralStore.BusinessLayer.Interface.Users
         LoginFormResponse AuthenticateUser(LoginForm loginForm);
 
         SignUpFormResponse RegistorUser(SignUpForm signUpForm);
+
+        MobileNumberVerificationResponse VerifyUserAccount(string mobileNumber);
     }
 }
