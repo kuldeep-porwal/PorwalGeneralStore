@@ -18,7 +18,9 @@ using PorwalGeneralStore.DataAccessLayer.Implementation.Products;
 using PorwalGeneralStore.DataAccessLayer.Interface.Products;
 using PorwalGeneralStore.DataAccessLayer.Interface.Users;
 using PorwalGeneralStore.EdmxModel;
+using PorwalGeneralStore.Global.ExtensionMethods;
 using PorwalGeneralStore.Utility.JWTTokenGenerator;
+using PorwalGeneralStore.Utility.JWTTokenGenerator.Model;
 using Serilog;
 
 namespace PorwalGeneralStore.WebApi
@@ -36,9 +38,10 @@ namespace PorwalGeneralStore.WebApi
             BaseConfigureServices(services);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             _logger.LogInformation("Configuring Services Finished");
+            _ = services.AddSingleton(Configuration.BindAndReturn<JwtConfiguration>("JwtConfiguration"));
 
             services.AddDbContext<PorwalGeneralStoreContext>(options =>
-        options.UseSqlServer(Configuration.GetConnectionString("ConnectionStrings")));
+                        options.UseSqlServer(Configuration.GetConnectionString("ConnectionStrings")));
 
             services.AddScoped<IProductBiz, ProductBiz>();
             services.AddScoped<IProductLayer, ProductLayer>();
