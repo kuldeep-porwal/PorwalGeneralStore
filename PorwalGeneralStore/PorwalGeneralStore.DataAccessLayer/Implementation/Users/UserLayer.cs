@@ -22,7 +22,7 @@ namespace PorwalGeneralStore.DataAccessLayer.Interface.Users
             UserInformation userInformation = null;
 
             CustomerInfo customerInfo = context.CustomerInfo.FirstOrDefault(
-                                        x => x.CustomerName.Equals(loginForm.UserName, StringComparison.OrdinalIgnoreCase) &&
+                                        x => x.Phone.Equals(loginForm.UserName, StringComparison.OrdinalIgnoreCase) &&
                                             x.Password.Equals(loginForm.Password));
             if (customerInfo != null)
             {

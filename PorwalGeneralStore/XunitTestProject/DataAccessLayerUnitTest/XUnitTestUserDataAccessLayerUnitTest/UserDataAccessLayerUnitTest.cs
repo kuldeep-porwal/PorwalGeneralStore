@@ -22,17 +22,17 @@ namespace XUnitTestUserDataAccessLayerUnitTest
         }
 
         [Theory(DisplayName = "DataAccessLayer - Get Userinformation")]
-        [InlineData("KuldeeP", "12345")]
-        [InlineData("Aman PAL", "Pal123")]
-        [InlineData("AmAn PaL", "Pal123")]
-        [InlineData("AMAN PAL", "Pal123")]
+        [InlineData("1234567890", "12345")]
+        [InlineData("9876543210", "789456123")]
+        [InlineData("5289631470", "Pal123")]
+        [InlineData("1287567890", "Pal123")]
         public void UnitTest1(string userName, string password)
         {
             var ExpectedResult = _porwalGeneralStoreContext
                                   .CustomerInfo
                                   .FirstOrDefault(
                                         x =>
-                                            x.CustomerName.Equals(userName, StringComparison.OrdinalIgnoreCase) &&
+                                            x.Phone.Equals(userName, StringComparison.OrdinalIgnoreCase) &&
                                             x.Password.Equals(password));
 
             var ActualResult = _userLayer.GetUserDetail(new LoginForm()

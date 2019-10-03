@@ -81,7 +81,7 @@ namespace XUnitTestUserBizUnitTest
             {
                 _userBiz.AuthenticateUser(new LoginForm()
                 {
-                    UserName = "kuldeep",
+                    UserName = "7894561230",
                     Password = "Porwal"
                 });
             });
@@ -107,7 +107,7 @@ namespace XUnitTestUserBizUnitTest
         }
 
         [Theory(DisplayName = "Business -: Get Correct Response Object")]
-        [InlineData("kuldeep", "Password")]
+        [InlineData("7894563210", "Password")]
         public void UnitTest6(string userName, string password)
         {
             _userLayer.Setup(x => x.GetUserDetail(It.IsAny<LoginForm>())).Returns(new UserInformation() { UserId = 1, CustomerName = "Test Customer", City = "Test City", FirstName = "Test FirstName", LastName = "Test LastName", Phone = "987654321" });
@@ -137,7 +137,7 @@ namespace XUnitTestUserBizUnitTest
         }
 
         [Theory(DisplayName = "Business -: Get Valid user Id")]
-        [InlineData("kuldeep", "Password")]
+        [InlineData("7894563210", "Password")]
         public void UnitTest7(string userName, string password)
         {
             _userLayer.Setup(x => x.GetUserDetail(It.IsAny<LoginForm>())).Returns(new UserInformation() { UserId = 1, CustomerName = "Test Customer", City = "Test City", FirstName = "Test FirstName", LastName = "Test LastName", Phone = "987654321" });
@@ -169,7 +169,7 @@ namespace XUnitTestUserBizUnitTest
         }
 
         [Theory(DisplayName = "Business -: Get Valid user Id and Blank Token Response")]
-        [InlineData("kuldeep", "Password")]
+        [InlineData("7894563210", "Password")]
         public void UnitTest8(string userName, string password)
         {
             _userLayer.Setup(x => x.GetUserDetail(It.IsAny<LoginForm>())).Returns(new UserInformation() { UserId = 1, CustomerName = "Test Customer", City = "Test City", FirstName = "Test FirstName", LastName = "Test LastName", Phone = "987654321" });
@@ -202,7 +202,7 @@ namespace XUnitTestUserBizUnitTest
         }
 
         [Theory(DisplayName = "Business -: Get Valid user Id and Valid Token Response")]
-        [InlineData("kuldeep", "Password")]
+        [InlineData("7894563210", "Password")]
         public void UnitTest9(string userName, string password)
         {
             _userLayer.Setup(x => x.GetUserDetail(It.IsAny<LoginForm>())).Returns(new UserInformation() { UserId = 1, CustomerName = "Test Customer", City = "Test City", FirstName = "Test FirstName", LastName = "Test LastName", Phone = "987654321" });
@@ -234,6 +234,41 @@ namespace XUnitTestUserBizUnitTest
             Assert.True(!string.IsNullOrEmpty(ActualResult.Response.TokenDetail.Type));
             Assert.True(!string.IsNullOrEmpty(ActualResult.Response.TokenDetail.Value));
             Assert.True(ActualResult.Response.TokenDetail.CreatedAt != DateTime.MinValue);
+        }
+
+        [Theory(DisplayName = "Business -: Invalid MobileNumber Validation Error Should Come")]
+        [InlineData("Invalid Mobile Number", "Password")]
+        [InlineData("", "Password")]
+        [InlineData(" ", "Password")]
+        [InlineData(null, "Password")]
+        [InlineData("12345667", "Password")]
+        [InlineData("123456dd", "Password")]
+        [InlineData("1234567890q", "Password")]
+        [InlineData("123456789098", "Password")]
+        [InlineData("fd4454dr4red", "Password")]
+        public void UnitTest10(string userName, string password)
+        {
+            _userLayer.Setup(x => x.GetUserDetail(It.IsAny<LoginForm>())).Returns(new UserInformation() { UserId = 1, CustomerName = "Test Customer", City = "Test City", FirstName = "Test FirstName", LastName = "Test LastName", Phone = "987654321" });
+            _jwtBuilder
+                .Setup(x => x.GetJWTToken(It.IsAny<Dictionary<string, string>>(), It.IsAny<string>(), It.IsAny<DateTime?>()))
+                .Returns(new JwtTokenResponse()
+                {
+                    StatusCode = 200,
+                    ErrorList = null,
+                    TokenDetail = new JwtToken()
+                    {
+                        Type = "Bearer",
+                        Value = "7895643215rewrf1sd2f1sd3r15efs3d21f5rr1fsd23f13sd21f32sd1f32",
+                        CreatedAt = DateTime.UtcNow
+                    }
+                });
+
+            var ActualResult = _userBiz.AuthenticateUser(new LoginForm() { UserName = userName, Password = password });
+
+            Assert.NotNull(ActualResult);
+            Assert.True(ActualResult.StatusCode == 400);
+            Assert.NotNull(ActualResult.ErrorList);
+            Assert.True(ActualResult.ErrorList.Count > 0);
         }
     }
 }

@@ -75,6 +75,21 @@ namespace PorwalGeneralStore.BusinessLayer.Interface.Users
                     return loginFormResponse;
                 }
 
+                if (!Regex.IsMatch(loginForm.UserName, RegexPattern.mobile_number_validation_Patterns.GetCombinedPattern()))
+                {
+                    loginFormResponse.StatusCode = 400;
+                    loginFormResponse.ErrorList = new List<LoginValidationResponse>()
+                    {
+                        new LoginValidationResponse()
+                        {
+                            Code=1001,
+                            FieldName=nameof(loginForm.UserName),
+                            Message=nameof(loginForm.UserName)+" should be valid. Format -: xxxxxxxxxx | +xxxxxxxxxxxx | +xx xx xxxxxxxx | xxx-xxxx-xxxx"
+                        }
+                    };
+                    return loginFormResponse;
+                }
+
                 UserInformation userInformation = _userLayer.GetUserDetail(loginForm);
                 if (userInformation != null)
                 {
