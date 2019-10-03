@@ -20,6 +20,18 @@ namespace InMemoryDbContext
             _inMemoryContext = new PorwalGeneralStoreContext(dbContextOptionsBuilder);
             SeedingTestData();
         }
+        public Startup(string dbName, bool isSeedData = true)
+        {
+            var dbContextOptionsBuilder = new DbContextOptionsBuilder<PorwalGeneralStoreContext>()
+                                .UseInMemoryDatabase(databaseName: dbName)
+                                .EnableSensitiveDataLogging(true)
+                                .Options;
+            _inMemoryContext = new PorwalGeneralStoreContext(dbContextOptionsBuilder);
+            if (isSeedData)
+            {
+                SeedingTestData();
+            }
+        }
 
         public void SeedingTestData()
         {
