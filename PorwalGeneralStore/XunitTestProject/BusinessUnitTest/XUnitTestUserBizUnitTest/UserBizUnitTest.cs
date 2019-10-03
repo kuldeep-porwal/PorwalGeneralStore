@@ -71,7 +71,7 @@ namespace XUnitTestUserBizUnitTest
             Assert.True(ActualResult.ErrorList.Count > 0);
         }
 
-        [Fact(DisplayName = "Business -: Handling Exception in ReadMultipleProduct")]
+        [Fact(DisplayName = "Business -: Handling Exception in AuthenticateUser")]
         public void UnitTest4()
         {
             _userLayer.Setup(x => x.GetUserDetail(It.IsAny<LoginForm>())).Throws(new Exception());

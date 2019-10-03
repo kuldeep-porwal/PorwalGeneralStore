@@ -15,7 +15,7 @@ namespace InMemoryDbContext
                 {
                     Id=1,
                     City="Indore",
-                    Phone="123456",
+                    Phone="No Exist",
                     CustomerName="Kuldeep",
                     FirstName="Kuldeep Porwal",
                     LastName="Porwal",
@@ -25,7 +25,7 @@ namespace InMemoryDbContext
                 {
                     Id=2,
                     City="Indore",
-                    Phone="123456",
+                    Phone="Exist",
                     CustomerName="Vinod Sahu",
                     FirstName="Vinod",
                     LastName="Sahu",

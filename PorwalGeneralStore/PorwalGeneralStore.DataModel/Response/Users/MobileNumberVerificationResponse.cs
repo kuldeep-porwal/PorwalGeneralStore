@@ -5,18 +5,16 @@ using System.Text;
 
 namespace PorwalGeneralStore.DataModel.Response.Users
 {
-    public class SignUpFormResponse : BaseResponse
+    public class MobileNumberVerificationResponse : BaseResponse
     {
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
-        public List<SignUpValidationResponse> ErrorList { get; set; }
+        public List<MobileNumberValidationResponse> ErrorList { get; set; }
 
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
         public string Message { get; set; }
     }
 
-    public class SignUpValidationResponse : BaseValidationResponse
+    public class MobileNumberValidationResponse : BaseValidationResponse
     {
-        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
-        public string FieldName { get; set; }
     }
 }

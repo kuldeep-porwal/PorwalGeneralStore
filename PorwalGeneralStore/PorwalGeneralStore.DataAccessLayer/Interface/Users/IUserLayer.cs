@@ -9,5 +9,7 @@ namespace PorwalGeneralStore.DataAccessLayer.Interface.Users
     public interface IUserLayer
     {
         UserInformation GetUserDetail(LoginForm loginForm);
+        bool RegisterUser(SignUpForm signUpForm);
+        bool isExistPhoneNumber(string phoneNumber);
     }
 }

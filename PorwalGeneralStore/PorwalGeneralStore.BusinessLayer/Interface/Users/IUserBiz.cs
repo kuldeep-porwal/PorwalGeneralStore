@@ -9,5 +9,9 @@ namespace PorwalGeneralStore.BusinessLayer.Interface.Users
     public interface IUserBiz
     {
         LoginFormResponse AuthenticateUser(LoginForm loginForm);
+
+        SignUpFormResponse RegistorUser(SignUpForm signUpForm);
+
+        MobileNumberVerificationResponse VerifyUserAccount(string mobileNumber);
     }
 }
