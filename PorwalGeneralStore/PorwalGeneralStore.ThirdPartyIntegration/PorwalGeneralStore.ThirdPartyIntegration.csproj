@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -6,6 +6,11 @@
 
   <ItemGroup>
     <PackageReference Include="SonarAnalyzer.CSharp" Version="7.13.0.8313" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="MSG91BulkSmsServices\Interface\" />
+    <Folder Include="MSG91BulkSmsServices\Implementation\" />
   </ItemGroup>
 
 </Project>
