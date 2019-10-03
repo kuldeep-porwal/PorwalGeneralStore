@@ -7,6 +7,7 @@ using PorwalGeneralStore.Utility.JWTTokenGenerator;
 using PorwalGeneralStore.Utility.JWTTokenGenerator.Model;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -77,10 +78,36 @@ namespace PorwalGeneralStore.BusinessLayer.Interface.Users
                 UserInformation userInformation = _userLayer.GetUserDetail(loginForm);
                 if (userInformation != null)
                 {
-                    loginFormResponse.StatusCode = 200;
-                    loginFormResponse.Response = new LoginResponse();
-                    loginFormResponse.Response.UserId = userInformation.UserId;
-                    //loginFormResponse.Response.TokenDetail = GetJWTToken(userInformation);
+                    JwtTokenResponse jwtTokenResponse = GetJWTToken(userInformation);
+                    if (jwtTokenResponse.StatusCode == 200)
+                    {
+                        JwtToken tokenDetail = jwtTokenResponse.TokenDetail;
+                        loginFormResponse.StatusCode = 200;
+                        loginFormResponse.Response = new LoginResponse();
+                        loginFormResponse.Response.UserId = userInformation.UserId;
+                        if (tokenDetail != null)
+                        {
+                            loginFormResponse.Response.TokenDetail = new Token()
+                            {
+                                Type = tokenDetail.Type,
+                                Value = tokenDetail.Value,
+                                CreatedAt = tokenDetail.CreatedAt,
+                                ExpiredAt = tokenDetail.ExpiredAt
+                            };
+                        }
+                    }
+                    else
+                    {
+                        loginFormResponse.StatusCode = 400;
+                        loginFormResponse.ErrorList = jwtTokenResponse
+                                                        .ErrorList
+                                                        .Select(x => new LoginValidationResponse()
+                                                        {
+                                                            FieldName = x.FieldName,
+                                                            Message = x.Message,
+                                                            Code = x.Code
+                                                        }).ToList();
+                    }
                 }
                 else
                 {

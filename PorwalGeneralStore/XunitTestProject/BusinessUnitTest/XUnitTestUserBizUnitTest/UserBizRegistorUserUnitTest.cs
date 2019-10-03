@@ -3,6 +3,7 @@ using PorwalGeneralStore.BusinessLayer.Interface.Users;
 using PorwalGeneralStore.DataAccessLayer.Interface.Users;
 using PorwalGeneralStore.DataModel.Request.Users;
 using PorwalGeneralStore.DataModel.Response.Users;
+using PorwalGeneralStore.Utility.JWTTokenGenerator;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,10 +15,12 @@ namespace XUnitTestUserBizUnitTest
     {
         private readonly IUserBiz _userBiz;
         private readonly Mock<IUserLayer> _userLayer;
+        private readonly Mock<IJwtBuilder> _jwtBuilder;
         public UserBizRegistorUserUnitTest()
         {
             _userLayer = new Mock<IUserLayer>();
-            _userBiz = new UserBiz(_userLayer.Object);
+            _jwtBuilder = new Mock<IJwtBuilder>();
+            _userBiz = new UserBiz(_userLayer.Object, _jwtBuilder.Object);
         }
 
         [Fact(DisplayName = "Business -: null Object Error ")]
@@ -138,10 +141,11 @@ namespace XUnitTestUserBizUnitTest
         }
 
         [Theory(DisplayName = "Business -: Mobile Number is Already Registered validation error should not come if mobile number is not exist.")]
-        [MemberData(nameof(signUpFormData))]
+        [MemberData(nameof(signUpFormDataWithValidMobileNumber))]
         public void UnitTest10(SignUpForm input)
         {
             _userLayer.Setup(x => x.isExistPhoneNumber(It.IsAny<string>())).Returns(false);
+            _userLayer.Setup(x => x.RegisterUser(It.IsAny<SignUpForm>())).Returns(true);
 
             var ActualResult = _userBiz.RegistorUser(input);
 
@@ -151,9 +155,10 @@ namespace XUnitTestUserBizUnitTest
         }
 
         [Theory(DisplayName = "Business -: user should register successfully.")]
-        [MemberData(nameof(signUpFormData))]
+        [MemberData(nameof(signUpFormDataWithValidMobileNumber))]
         public void UnitTest11(SignUpForm input)
         {
+            _userLayer.Setup(x => x.isExistPhoneNumber(It.IsAny<string>())).Returns(false);
             _userLayer.Setup(x => x.RegisterUser(It.IsAny<SignUpForm>())).Returns(true);
 
             var ActualResult = _userBiz.RegistorUser(input);
@@ -166,9 +171,10 @@ namespace XUnitTestUserBizUnitTest
         }
 
         [Theory(DisplayName = "Business -: validation error come when user is not register successfully.")]
-        [MemberData(nameof(signUpFormData))]
+        [MemberData(nameof(signUpFormDataWithValidMobileNumber))]
         public void UnitTest12(SignUpForm input)
         {
+            _userLayer.Setup(x => x.isExistPhoneNumber(It.IsAny<string>())).Returns(false);
             _userLayer.Setup(x => x.RegisterUser(It.IsAny<SignUpForm>())).Returns(false);
 
             var ActualResult = _userBiz.RegistorUser(input);
@@ -182,9 +188,10 @@ namespace XUnitTestUserBizUnitTest
         }
 
         [Theory(DisplayName = "Business -: validation error come when any exception is rised.")]
-        [MemberData(nameof(signUpFormData))]
+        [MemberData(nameof(signUpFormDataWithValidMobileNumber))]
         public void UnitTest13(SignUpForm input)
         {
+            _userLayer.Setup(x => x.isExistPhoneNumber(It.IsAny<string>())).Returns(false);
             _userLayer.Setup(x => x.RegisterUser(It.IsAny<SignUpForm>())).Throws(new Exception());
 
             var ActualResult = _userBiz.RegistorUser(input);
@@ -198,9 +205,10 @@ namespace XUnitTestUserBizUnitTest
         }
 
         [Theory(DisplayName = "Business -: Handling Exception in RegistorUser.")]
-        [MemberData(nameof(signUpFormData))]
+        [MemberData(nameof(signUpFormDataWithValidMobileNumber))]
         public void UnitTest14(SignUpForm input)
         {
+            _userLayer.Setup(x => x.isExistPhoneNumber(It.IsAny<string>())).Returns(false);
             _userLayer.Setup(x => x.RegisterUser(It.IsAny<SignUpForm>())).Throws(new Exception());
 
             var ActualResult = Record.Exception(() => _userBiz.RegistorUser(input));
@@ -308,7 +316,7 @@ namespace XUnitTestUserBizUnitTest
                     FirstName = "FirstName",
                     City = "City",
                     LastName = "LastName",
-                    MobileNumber = "MobileNumber",
+                    MobileNumber = "0123456789a",
                     Password = "Password",
                     UserName = "UserName"
                 };

@@ -32,12 +32,14 @@ namespace PorwalGeneralStore.Utility.JWTTokenGenerator
             {
                 StatusCode = 200
             };
-
-            if (claims == null ||
-                claims.Count == 0)
+            try
             {
-                jwtTokenResponse.StatusCode = 400;
-                jwtTokenResponse.ErrorList = new List<JwtValidation>()
+
+                if (claims == null ||
+                claims.Count == 0)
+                {
+                    jwtTokenResponse.StatusCode = 400;
+                    jwtTokenResponse.ErrorList = new List<JwtValidation>()
                 {
                     new JwtValidation()
                     {
@@ -45,13 +47,13 @@ namespace PorwalGeneralStore.Utility.JWTTokenGenerator
                         Message="Claims can't be blank"
                     }
                 };
-                return jwtTokenResponse;
-            }
+                    return jwtTokenResponse;
+                }
 
-            if (string.IsNullOrWhiteSpace(audience))
-            {
-                jwtTokenResponse.StatusCode = 400;
-                jwtTokenResponse.ErrorList = new List<JwtValidation>()
+                if (string.IsNullOrWhiteSpace(audience))
+                {
+                    jwtTokenResponse.StatusCode = 400;
+                    jwtTokenResponse.ErrorList = new List<JwtValidation>()
                 {
                     new JwtValidation()
                     {
@@ -59,13 +61,13 @@ namespace PorwalGeneralStore.Utility.JWTTokenGenerator
                         Message="audience can't be blank"
                     }
                 };
-                return jwtTokenResponse;
-            }
+                    return jwtTokenResponse;
+                }
 
-            if (expires != null && expires < issuedAt)
-            {
-                jwtTokenResponse.StatusCode = 400;
-                jwtTokenResponse.ErrorList = new List<JwtValidation>()
+                if (expires != null && expires < issuedAt)
+                {
+                    jwtTokenResponse.StatusCode = 400;
+                    jwtTokenResponse.ErrorList = new List<JwtValidation>()
                 {
                     new JwtValidation()
                     {
@@ -73,66 +75,70 @@ namespace PorwalGeneralStore.Utility.JWTTokenGenerator
                         Message="expires time should be greater then current utc time"
                     }
                 };
-                return jwtTokenResponse;
-            }
+                    return jwtTokenResponse;
+                }
 
-            string JwtToken = GenerateToken(claims, audience, expires, issuedAt);
+                string JwtToken = GenerateToken(claims, audience, expires, issuedAt);
 
-            if (string.IsNullOrWhiteSpace(JwtToken))
-            {
-                jwtTokenResponse.StatusCode = 400;
-                jwtTokenResponse.ErrorList = new List<JwtValidation>()
+                if (string.IsNullOrWhiteSpace(JwtToken))
+                {
+                    jwtTokenResponse.StatusCode = 400;
+                    jwtTokenResponse.ErrorList = new List<JwtValidation>()
                 {
                     new JwtValidation()
                     {
                         Message="Error while generating token"
                     }
                 };
-            }
-            else
-            {
-                jwtTokenResponse.StatusCode = 200;
-                jwtTokenResponse.ErrorList = null;
-                jwtTokenResponse.TokenDetail = new JwtToken()
+                }
+                else
                 {
-                    Type = "Bearer",
-                    Value = JwtToken,
-                    CreatedAt = DateTime.UtcNow,
-                    ExpiredAt = expires
+                    jwtTokenResponse.StatusCode = 200;
+                    jwtTokenResponse.ErrorList = null;
+                    jwtTokenResponse.TokenDetail = new JwtToken()
+                    {
+                        Type = "Bearer",
+                        Value = JwtToken,
+                        CreatedAt = DateTime.UtcNow,
+                        ExpiredAt = expires
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                jwtTokenResponse.StatusCode = 400;
+                jwtTokenResponse.ErrorList = new List<JwtValidation>()
+                {
+                    new JwtValidation()
+                    {
+                        Message="Error while generating token -: "+ex.Message
+                    }
                 };
             }
-
             return jwtTokenResponse;
         }
 
         public string GenerateToken(Dictionary<string, string> claims, string audience, DateTime? expires, DateTime issuedAt)
         {
             string tokenString = string.Empty;
-            try
-            {
-                Claim[] claimList = GetClaimsList(claims);
+            Claim[] claimList = GetClaimsList(claims);
 
-                //http://stackoverflow.com/questions/18223868/how-to-encrypt-jwt-security-token
-                var tokenHandler = new JwtSecurityTokenHandler();
+            //http://stackoverflow.com/questions/18223868/how-to-encrypt-jwt-security-token
+            var tokenHandler = new JwtSecurityTokenHandler();
 
-                ClaimsIdentity claimsIdentity = new ClaimsIdentity(claimList);
+            ClaimsIdentity claimsIdentity = new ClaimsIdentity(claimList);
 
-                //create the jwt
-                var token = tokenHandler.CreateJwtSecurityToken(
-                                        issuer: _config.Issuer,
-                                        audience: audience,
-                                        subject: claimsIdentity,
-                                        notBefore: issuedAt,
-                                        expires: expires,
-                                        signingCredentials: _signingCredentials
-                                        );
+            //create the jwt
+            var token = tokenHandler.CreateJwtSecurityToken(
+                                    issuer: _config.Issuer,
+                                    audience: audience,
+                                    subject: claimsIdentity,
+                                    notBefore: issuedAt,
+                                    expires: expires,
+                                    signingCredentials: _signingCredentials
+                                    );
 
-                tokenString = tokenHandler.WriteToken(token);
-            }
-            catch
-            {
-                tokenString = string.Empty;
-            }
+            tokenString = tokenHandler.WriteToken(token);
             return tokenString;
         }
 

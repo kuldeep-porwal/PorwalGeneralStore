@@ -91,17 +91,21 @@ namespace PorwalGeneralStore.XUnitTestUtility
             Assert.True(!string.IsNullOrWhiteSpace(ActualResult));
         }
 
-        [Theory(DisplayName = "Get blank JWT Token ")]
+        [Theory(DisplayName = "Exception Should be trhown when token is not generate.")]
         [MemberData(nameof(TokenCreatorData))]
         public void UnitTest6(Dictionary<string, string> claimList, string audience, DateTime? expires)
         {
-            var ActualResult = new JwtBuilder(
-                new JwtConfiguration()
-                {
-                    Issuer = "Issuer",
-                    Secret = "Wrong key Size"
-                }).GenerateToken(claimList, audience, expires, DateTime.UtcNow);
-            Assert.True(string.IsNullOrWhiteSpace(ActualResult));
+            var exception = Record.Exception(() =>
+            {
+                new JwtBuilder(
+                    new JwtConfiguration()
+                    {
+                        Issuer = "Issuer",
+                        Secret = "Wrong key Size"
+                    }).GenerateToken(claimList, audience, expires, DateTime.UtcNow);
+            });
+
+            Assert.NotNull(exception);
         }
 
         [Theory(DisplayName = "Get Validtion Response When Token is not generate")]
@@ -119,7 +123,6 @@ namespace PorwalGeneralStore.XUnitTestUtility
             Assert.Null(ActualResult.TokenDetail);
             Assert.True(ActualResult.StatusCode == 400);
             Assert.True(ActualResult.ErrorList.Count > 0);
-            Assert.True(ActualResult.ErrorList.First().Message == "Error while generating token");
         }
 
         [Theory(DisplayName = "Get Validtion Response When expires time is less then current time")]

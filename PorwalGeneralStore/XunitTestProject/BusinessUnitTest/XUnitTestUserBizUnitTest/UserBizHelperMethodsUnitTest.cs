@@ -28,7 +28,11 @@ namespace XUnitTestUserBizUnitTest
         {
             var ActualResult = _userBiz.GetJWTToken(null);
 
-            Assert.Null(ActualResult);
+            Assert.NotNull(ActualResult);
+            Assert.True(ActualResult.StatusCode == 400);
+            Assert.NotNull(ActualResult.ErrorList);
+            Assert.Null(ActualResult.TokenDetail);
+            Assert.True(ActualResult.ErrorList.Count > 0);
         }
 
         [Fact(DisplayName = "UserBizHelperMethod -: Valid Token Object ")]

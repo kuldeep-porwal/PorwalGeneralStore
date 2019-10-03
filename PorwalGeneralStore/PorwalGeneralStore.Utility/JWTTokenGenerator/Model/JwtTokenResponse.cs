@@ -24,6 +24,7 @@ namespace PorwalGeneralStore.Utility.JWTTokenGenerator.Model
 
     public class JwtValidation
     {
+        public int Code { get; set; }
         public string FieldName { get; set; }
         public string Message { get; set; }
     }

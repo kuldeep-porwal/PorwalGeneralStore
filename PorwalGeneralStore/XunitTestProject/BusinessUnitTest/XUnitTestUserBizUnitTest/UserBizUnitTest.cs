@@ -4,6 +4,7 @@ using PorwalGeneralStore.DataAccessLayer.Interface.Users;
 using PorwalGeneralStore.DataModel.Public.Business;
 using PorwalGeneralStore.DataModel.Request.Users;
 using PorwalGeneralStore.Utility.JWTTokenGenerator;
+using PorwalGeneralStore.Utility.JWTTokenGenerator.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -109,8 +110,20 @@ namespace XUnitTestUserBizUnitTest
         [InlineData("kuldeep", "Password")]
         public void UnitTest6(string userName, string password)
         {
-            _userLayer.Setup(x => x.GetUserDetail(It.IsAny<LoginForm>())).Returns(new UserInformation() { UserId = 1 });
-
+            _userLayer.Setup(x => x.GetUserDetail(It.IsAny<LoginForm>())).Returns(new UserInformation() { UserId = 1, CustomerName = "Test Customer", City = "Test City", FirstName = "Test FirstName", LastName = "Test LastName", Phone = "987654321" });
+            _jwtBuilder
+                .Setup(x => x.GetJWTToken(It.IsAny<Dictionary<string, string>>(), It.IsAny<string>(), It.IsAny<DateTime?>()))
+                .Returns(new JwtTokenResponse()
+                {
+                    StatusCode = 200,
+                    ErrorList = null,
+                    TokenDetail = new JwtToken()
+                    {
+                        Type = "Bearer",
+                        Value = "7895643215rewrf1sd2f1sd3r15efs3d21f5rr1fsd23f13sd21f32sd1f32",
+                        CreatedAt = DateTime.UtcNow
+                    }
+                });
             var ActualResult = _userBiz.AuthenticateUser(new LoginForm()
             {
                 UserName = userName,
@@ -127,7 +140,20 @@ namespace XUnitTestUserBizUnitTest
         [InlineData("kuldeep", "Password")]
         public void UnitTest7(string userName, string password)
         {
-            _userLayer.Setup(x => x.GetUserDetail(It.IsAny<LoginForm>())).Returns(new UserInformation() { UserId = 1 });
+            _userLayer.Setup(x => x.GetUserDetail(It.IsAny<LoginForm>())).Returns(new UserInformation() { UserId = 1, CustomerName = "Test Customer", City = "Test City", FirstName = "Test FirstName", LastName = "Test LastName", Phone = "987654321" });
+            _jwtBuilder
+                            .Setup(x => x.GetJWTToken(It.IsAny<Dictionary<string, string>>(), It.IsAny<string>(), It.IsAny<DateTime?>()))
+                            .Returns(new JwtTokenResponse()
+                            {
+                                StatusCode = 200,
+                                ErrorList = null,
+                                TokenDetail = new JwtToken()
+                                {
+                                    Type = "Bearer",
+                                    Value = "7895643215rewrf1sd2f1sd3r15efs3d21f5rr1fsd23f13sd21f32sd1f32",
+                                    CreatedAt = DateTime.UtcNow
+                                }
+                            });
 
             var ActualResult = _userBiz.AuthenticateUser(new LoginForm()
             {
@@ -146,7 +172,20 @@ namespace XUnitTestUserBizUnitTest
         [InlineData("kuldeep", "Password")]
         public void UnitTest8(string userName, string password)
         {
-            _userLayer.Setup(x => x.GetUserDetail(It.IsAny<LoginForm>())).Returns(new UserInformation() { UserId = 1 });
+            _userLayer.Setup(x => x.GetUserDetail(It.IsAny<LoginForm>())).Returns(new UserInformation() { UserId = 1, CustomerName = "Test Customer", City = "Test City", FirstName = "Test FirstName", LastName = "Test LastName", Phone = "987654321" });
+            _jwtBuilder
+               .Setup(x => x.GetJWTToken(It.IsAny<Dictionary<string, string>>(), It.IsAny<string>(), It.IsAny<DateTime?>()))
+                .Returns(new JwtTokenResponse()
+                {
+                    StatusCode = 200,
+                    ErrorList = null,
+                    TokenDetail = new JwtToken()
+                    {
+                        Type = "Bearer",
+                        Value = "7895643215rewrf1sd2f1sd3r15efs3d21f5rr1fsd23f13sd21f32sd1f32",
+                        CreatedAt = DateTime.UtcNow
+                    }
+                });
 
             var ActualResult = _userBiz.AuthenticateUser(new LoginForm()
             {
@@ -166,8 +205,20 @@ namespace XUnitTestUserBizUnitTest
         [InlineData("kuldeep", "Password")]
         public void UnitTest9(string userName, string password)
         {
-            _userLayer.Setup(x => x.GetUserDetail(It.IsAny<LoginForm>())).Returns(new UserInformation() { UserId = 1 });
-
+            _userLayer.Setup(x => x.GetUserDetail(It.IsAny<LoginForm>())).Returns(new UserInformation() { UserId = 1, CustomerName = "Test Customer", City = "Test City", FirstName = "Test FirstName", LastName = "Test LastName", Phone = "987654321" });
+            _jwtBuilder
+                .Setup(x => x.GetJWTToken(It.IsAny<Dictionary<string, string>>(), It.IsAny<string>(), It.IsAny<DateTime?>()))
+                .Returns(new JwtTokenResponse()
+                {
+                    StatusCode = 200,
+                    ErrorList = null,
+                    TokenDetail = new JwtToken()
+                    {
+                        Type = "Bearer",
+                        Value = "7895643215rewrf1sd2f1sd3r15efs3d21f5rr1fsd23f13sd21f32sd1f32",
+                        CreatedAt = DateTime.UtcNow
+                    }
+                });
             var ActualResult = _userBiz.AuthenticateUser(new LoginForm()
             {
                 UserName = userName,
