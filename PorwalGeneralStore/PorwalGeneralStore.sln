@@ -53,7 +53,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitTestUserBizUnitTest", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitTestUserDataAccessLayerUnitTest", "XunitTestProject\DataAccessLayerUnitTest\XUnitTestUserDataAccessLayerUnitTest\XUnitTestUserDataAccessLayerUnitTest.csproj", "{6F91ACDC-AB9A-43FA-B513-C97D9B9F5A7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PorwalGeneralStore.HttpWebRequestClientLibrary", "PorwalGeneralStore.HttpWebRequestClientLibrary\PorwalGeneralStore.HttpWebRequestClientLibrary.csproj", "{F97D0AA5-07AA-4B55-9AE4-1B3DF3BE7E03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PorwalGeneralStore.HttpWebRequestClientLibrary", "PorwalGeneralStore.HttpWebRequestClientLibrary\PorwalGeneralStore.HttpWebRequestClientLibrary.csproj", "{F97D0AA5-07AA-4B55-9AE4-1B3DF3BE7E03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitTestHttpWebRequestClientLibraryUnitTest", "XunitTestProject\XUnitTestHttpWebRequestClientLibraryUnitTest\XUnitTestHttpWebRequestClientLibraryUnitTest.csproj", "{9FFFB86D-88DA-4932-A408-45DA6856B2F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -129,6 +131,10 @@ Global
 		{F97D0AA5-07AA-4B55-9AE4-1B3DF3BE7E03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F97D0AA5-07AA-4B55-9AE4-1B3DF3BE7E03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F97D0AA5-07AA-4B55-9AE4-1B3DF3BE7E03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FFFB86D-88DA-4932-A408-45DA6856B2F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FFFB86D-88DA-4932-A408-45DA6856B2F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FFFB86D-88DA-4932-A408-45DA6856B2F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FFFB86D-88DA-4932-A408-45DA6856B2F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -145,6 +151,7 @@ Global
 		{571B50F6-48F2-44CF-8096-C3D52492C5F0} = {D96A0FBD-CF72-44CC-9397-19979F35D5DE}
 		{C7716EA5-730E-409E-8A0B-C074A49B0E31} = {2BFC22A7-AD61-4A19-9435-58957D6122E6}
 		{6F91ACDC-AB9A-43FA-B513-C97D9B9F5A7E} = {D96A0FBD-CF72-44CC-9397-19979F35D5DE}
+		{9FFFB86D-88DA-4932-A408-45DA6856B2F1} = {E8A7079D-3341-4A8A-81D5-089BFB118E4E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E51BCA3F-CC48-4DB6-B5ED-F3F761888795}
