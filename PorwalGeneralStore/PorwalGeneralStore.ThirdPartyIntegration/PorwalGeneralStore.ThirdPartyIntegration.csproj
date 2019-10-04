@@ -8,9 +8,4 @@
     <PackageReference Include="SonarAnalyzer.CSharp" Version="7.13.0.8313" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="MSG91BulkSmsServices\Interface\" />
-    <Folder Include="MSG91BulkSmsServices\Implementation\" />
-  </ItemGroup>
-
 </Project>
