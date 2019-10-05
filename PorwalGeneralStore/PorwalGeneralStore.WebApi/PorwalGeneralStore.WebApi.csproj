@@ -25,6 +25,7 @@
     <ProjectReference Include="..\PorwalGeneralStore.BusinessLayer\PorwalGeneralStore.BusinessLayer.csproj" />
     <ProjectReference Include="..\PorwalGeneralStore.DataModel\PorwalGeneralStore.DataModel.csproj" />
     <ProjectReference Include="..\PorwalGeneralStore.HttpWebRequestClientLibrary\PorwalGeneralStore.HttpWebRequestClientLibrary.csproj" />
+    <ProjectReference Include="..\PorwalGeneralStore.ThirdPartyIntegration\PorwalGeneralStore.ThirdPartyIntegration.csproj" />
   </ItemGroup>
 
 </Project>

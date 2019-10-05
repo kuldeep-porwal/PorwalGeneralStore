@@ -18,6 +18,7 @@ using PorwalGeneralStore.Global.ExtensionMethods;
 using PorwalGeneralStore.Utility.JWTTokenGenerator;
 using PorwalGeneralStore.Utility.JWTTokenGenerator.Model;
 using Serilog;
+using PorwalGeneralStore.ThirdPartyIntegration.MSG91BulkSmsServices.Model;
 
 namespace PorwalGeneralStore.WebApi
 {
@@ -36,6 +37,7 @@ namespace PorwalGeneralStore.WebApi
             _logger.LogInformation("Configuring Services Finished");
             _ = services.AddSingleton(Configuration.BindAndReturn<JwtConfiguration>("JwtConfiguration"));
             _ = services.AddSingleton(Configuration.BindAndReturn<HttpWebRequestConfiguration>("HttpWebRequestConfiguration"));
+            _ = services.AddSingleton(Configuration.BindAndReturn<Msg91BulkSmsServiceConfiguration>("HttpWebRequestConfiguration"));
             services.AddDbContext<PorwalGeneralStoreContext>(options =>
                         options.UseSqlServer(Configuration.GetConnectionString("ConnectionStrings")));
 
