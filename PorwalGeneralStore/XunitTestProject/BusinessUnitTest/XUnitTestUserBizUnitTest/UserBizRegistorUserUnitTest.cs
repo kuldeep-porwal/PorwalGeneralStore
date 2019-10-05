@@ -328,7 +328,7 @@ namespace XUnitTestUserBizUnitTest
                 City = "City",
                 LastName = "LastName",
                 MobileNumber = mobileNumber,
-                Password = "Password",
+                Password = "Password@123",
                 UserName = "UserName"
             };
         }
