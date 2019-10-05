@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BaseWebApp;
+﻿using BaseWebApp;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using PorwalGeneralStore.HttpWebRequestClientLibrary.Model;
 using PorwalGeneralStore.BusinessLayer.Implementation.Products;
 using PorwalGeneralStore.BusinessLayer.Interface.Products;
 using PorwalGeneralStore.BusinessLayer.Interface.Users;
@@ -39,7 +35,7 @@ namespace PorwalGeneralStore.WebApi
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             _logger.LogInformation("Configuring Services Finished");
             _ = services.AddSingleton(Configuration.BindAndReturn<JwtConfiguration>("JwtConfiguration"));
-
+            _ = services.AddSingleton(Configuration.BindAndReturn<HttpWebRequestConfiguration>("HttpWebRequestConfiguration"));
             services.AddDbContext<PorwalGeneralStoreContext>(options =>
                         options.UseSqlServer(Configuration.GetConnectionString("ConnectionStrings")));
 

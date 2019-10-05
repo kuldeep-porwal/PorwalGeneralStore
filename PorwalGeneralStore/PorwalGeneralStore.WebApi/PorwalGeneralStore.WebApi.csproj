@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -24,6 +24,7 @@
     <ProjectReference Include="..\BaseWebApp\BaseWebApp.csproj" />
     <ProjectReference Include="..\PorwalGeneralStore.BusinessLayer\PorwalGeneralStore.BusinessLayer.csproj" />
     <ProjectReference Include="..\PorwalGeneralStore.DataModel\PorwalGeneralStore.DataModel.csproj" />
+    <ProjectReference Include="..\PorwalGeneralStore.HttpWebRequestClientLibrary\PorwalGeneralStore.HttpWebRequestClientLibrary.csproj" />
   </ItemGroup>
 
 </Project>
