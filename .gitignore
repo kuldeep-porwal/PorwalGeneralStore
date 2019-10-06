@@ -78,3 +78,5 @@
 /PorwalGeneralStore/PorwalGeneralStore.HttpWebRequestClientLibrary/bin/Debug/netcoreapp2.2
 /PorwalGeneralStore/XunitTestProject/XUnitTestHttpWebRequestClientLibraryUnitTest/bin/Debug/netcoreapp2.2
 /PorwalGeneralStore/XunitTestProject/XUnitTestHttpWebRequestClientLibraryUnitTest/obj
+/PorwalGeneralStore/XunitTestProject/XUnitThirdPartyIntegrationUnitTest/bin/Debug/netcoreapp2.2
+/PorwalGeneralStore/XunitTestProject/XUnitThirdPartyIntegrationUnitTest/obj

@@ -13,6 +13,6 @@ namespace PorwalGeneralStore.ThirdPartyIntegration.MSG91BulkSmsServices.Model.Re
         public int otp_expiry { get; set; }
         public string sender { get; set; }
         public string message { get; set; }
-        public long mobile { get; set; }
+        public string mobile { get; set; }
     }
 }

@@ -6,7 +6,8 @@ namespace PorwalGeneralStore.ThirdPartyIntegration.MSG91BulkSmsServices.Model.Re
 {
     public class BaseResponse
     {
-        public string message { get; set; }
-        public string type { get; set; }
+        public string Message { get; set; }
+        public string Type { get; set; }
+        public string RequestId { get; set; }
     }
 }

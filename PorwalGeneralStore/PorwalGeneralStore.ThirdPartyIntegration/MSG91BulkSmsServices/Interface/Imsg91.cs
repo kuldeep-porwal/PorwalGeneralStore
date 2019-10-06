@@ -8,11 +8,11 @@ namespace PorwalGeneralStore.ThirdPartyIntegration.MSG91BulkSmsServices.Interfac
 {
     public interface IMsg91
     {
-        BaseResponse SendSingleSms(SingleSmsRequest smsRequest);
-        BaseResponse SendBulkSms(BulkSmsRequest bulkSmsRequest);
-        EmailOtpResponse SendOtpOnEmail(EmailOtpRequest smsRequest);
-        BaseResponse SendOtpSms(SmsOtpRequest smsRequest);
-        BaseResponse ResendOtpSms(ResendSmsOtpRequest smsRequest);
-        BaseResponse VerifyOtpSms(VerifyOtpRequest smsRequest);
+        Msg91ApiResponse SendSingleSms(SingleSmsRequest smsRequest);
+        Msg91ApiResponse SendBulkSms(BulkSmsRequest bulkSmsRequest);
+        Msg91ApiResponse SendOtpOnEmail(EmailOtpRequest smsRequest);
+        Msg91ApiResponse SendOtpSms(SmsOtpRequest smsRequest);
+        Msg91ApiResponse ResendOtpSms(ResendSmsOtpRequest smsRequest);
+        Msg91ApiResponse VerifyOtpSms(VerifyOtpRequest smsRequest);
     }
 }

@@ -8,4 +8,15 @@
     <PackageReference Include="SonarAnalyzer.CSharp" Version="7.13.0.8313" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PorwalGeneralStore.HttpWebRequestClientLibrary\PorwalGeneralStore.HttpWebRequestClientLibrary.csproj" />
+    <ProjectReference Include="..\PorwalGeneralStore.Utility\PorwalGeneralStore.Utility.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\newtonsoft.json\11.0.2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

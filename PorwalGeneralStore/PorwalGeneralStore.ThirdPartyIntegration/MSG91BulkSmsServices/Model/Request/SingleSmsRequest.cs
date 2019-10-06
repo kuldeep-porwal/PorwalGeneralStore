@@ -11,8 +11,8 @@ namespace PorwalGeneralStore.ThirdPartyIntegration.MSG91BulkSmsServices.Model.Re
         public string sender { get; set; }
         public string route { get; set; }
         public string mobiles { get; set; }
-        public string unicode { get; set; }
-        public string flash { get; set; }
+        public bool? unicode { get; set; }
+        public bool? flash { get; set; }
         public DateTime? schtime { get; set; }
         public int afterminutes { get; set; }
         public string response { get; set; }

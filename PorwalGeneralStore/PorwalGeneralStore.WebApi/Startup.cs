@@ -19,6 +19,10 @@ using PorwalGeneralStore.Utility.JWTTokenGenerator;
 using PorwalGeneralStore.Utility.JWTTokenGenerator.Model;
 using Serilog;
 using PorwalGeneralStore.ThirdPartyIntegration.MSG91BulkSmsServices.Model;
+using PorwalGeneralStore.ThirdPartyIntegration.MSG91BulkSmsServices.Interface;
+using PorwalGeneralStore.ThirdPartyIntegration.MSG91BulkSmsServices.Implementation;
+using PorwalGeneralStore.HttpWebRequestClientLibrary.Interface;
+using PorwalGeneralStore.HttpWebRequestClientLibrary.Implementation;
 
 namespace PorwalGeneralStore.WebApi
 {
@@ -48,6 +52,9 @@ namespace PorwalGeneralStore.WebApi
             services.AddScoped<IUserLayer, UserLayer>();
 
             services.AddScoped<IJwtBuilder, JwtBuilder>();
+
+            services.AddScoped<IMsg91, Msg91>();
+            services.AddScoped<IHttpWebRequestHandler, HttpWebRequestHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

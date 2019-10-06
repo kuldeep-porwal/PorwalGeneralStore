@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29123.88
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PorwalGeneralStore.BusinessLayer", "PorwalGeneralStore.BusinessLayer\PorwalGeneralStore.BusinessLayer.csproj", "{298E34B2-751B-4810-840D-98107EC3B76B}"
 EndProject
@@ -55,7 +55,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitTestUserDataAccessLaye
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PorwalGeneralStore.HttpWebRequestClientLibrary", "PorwalGeneralStore.HttpWebRequestClientLibrary\PorwalGeneralStore.HttpWebRequestClientLibrary.csproj", "{F97D0AA5-07AA-4B55-9AE4-1B3DF3BE7E03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitTestHttpWebRequestClientLibraryUnitTest", "XunitTestProject\XUnitTestHttpWebRequestClientLibraryUnitTest\XUnitTestHttpWebRequestClientLibraryUnitTest.csproj", "{9FFFB86D-88DA-4932-A408-45DA6856B2F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitTestHttpWebRequestClientLibraryUnitTest", "XunitTestProject\XUnitTestHttpWebRequestClientLibraryUnitTest\XUnitTestHttpWebRequestClientLibraryUnitTest.csproj", "{9FFFB86D-88DA-4932-A408-45DA6856B2F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitThirdPartyIntegrationUnitTest", "XunitTestProject\XUnitThirdPartyIntegrationUnitTest\XUnitThirdPartyIntegrationUnitTest.csproj", "{968C16DA-FE47-4D48-B616-9F1F453ED05D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -135,6 +137,10 @@ Global
 		{9FFFB86D-88DA-4932-A408-45DA6856B2F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FFFB86D-88DA-4932-A408-45DA6856B2F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FFFB86D-88DA-4932-A408-45DA6856B2F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{968C16DA-FE47-4D48-B616-9F1F453ED05D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{968C16DA-FE47-4D48-B616-9F1F453ED05D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{968C16DA-FE47-4D48-B616-9F1F453ED05D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{968C16DA-FE47-4D48-B616-9F1F453ED05D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -152,6 +158,7 @@ Global
 		{C7716EA5-730E-409E-8A0B-C074A49B0E31} = {2BFC22A7-AD61-4A19-9435-58957D6122E6}
 		{6F91ACDC-AB9A-43FA-B513-C97D9B9F5A7E} = {D96A0FBD-CF72-44CC-9397-19979F35D5DE}
 		{9FFFB86D-88DA-4932-A408-45DA6856B2F1} = {E8A7079D-3341-4A8A-81D5-089BFB118E4E}
+		{968C16DA-FE47-4D48-B616-9F1F453ED05D} = {E8A7079D-3341-4A8A-81D5-089BFB118E4E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E51BCA3F-CC48-4DB6-B5ED-F3F761888795}
