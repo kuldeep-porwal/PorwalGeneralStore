@@ -7,6 +7,7 @@ namespace PorwalGeneralStore.EdmxModel
     {
         public CustomerInfo()
         {
+            CustomerAddressInfo = new HashSet<CustomerAddressInfo>();
             StoreOrder = new HashSet<StoreOrder>();
         }
 
@@ -18,6 +19,7 @@ namespace PorwalGeneralStore.EdmxModel
         public string LastName { get; set; }
         public string Password { get; set; }
 
+        public virtual ICollection<CustomerAddressInfo> CustomerAddressInfo { get; set; }
         public virtual ICollection<StoreOrder> StoreOrder { get; set; }
     }
 }

@@ -7,6 +7,7 @@ namespace PorwalGeneralStore.EdmxModel
     {
         public StoreOrder()
         {
+            StoreOrderCustomerInfo = new HashSet<StoreOrderCustomerInfo>();
             StoreOrderItem = new HashSet<StoreOrderItem>();
         }
 
@@ -16,10 +17,14 @@ namespace PorwalGeneralStore.EdmxModel
         public int TotalItem { get; set; }
         public string PaymentStatus { get; set; }
         public string PaymentMode { get; set; }
+        public int OrderStatus { get; set; }
+        public string OrderCancelReason { get; set; }
+        public bool IsCanceledOrder { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
 
         public virtual CustomerInfo Customer { get; set; }
+        public virtual ICollection<StoreOrderCustomerInfo> StoreOrderCustomerInfo { get; set; }
         public virtual ICollection<StoreOrderItem> StoreOrderItem { get; set; }
     }
 }

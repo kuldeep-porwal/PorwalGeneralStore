@@ -23,6 +23,10 @@ using PorwalGeneralStore.ThirdPartyIntegration.MSG91BulkSmsServices.Interface;
 using PorwalGeneralStore.ThirdPartyIntegration.MSG91BulkSmsServices.Implementation;
 using PorwalGeneralStore.HttpWebRequestClientLibrary.Interface;
 using PorwalGeneralStore.HttpWebRequestClientLibrary.Implementation;
+using PorwalGeneralStore.BusinessLayer.Interface.Orders;
+using PorwalGeneralStore.BusinessLayer.Implementation.Orders;
+using PorwalGeneralStore.DataAccessLayer.Interface.Orders;
+using PorwalGeneralStore.DataAccessLayer.Implementation.Orders;
 
 namespace PorwalGeneralStore.WebApi
 {
@@ -50,6 +54,9 @@ namespace PorwalGeneralStore.WebApi
 
             services.AddScoped<IUserBiz, UserBiz>();
             services.AddScoped<IUserLayer, UserLayer>();
+
+            services.AddScoped<IOrderBiz, OrderBiz>();
+            services.AddScoped<IOrderLayer, OrderLayer>();
 
             services.AddScoped<IJwtBuilder, JwtBuilder>();
 

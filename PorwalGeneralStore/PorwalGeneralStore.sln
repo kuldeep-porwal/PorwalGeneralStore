@@ -57,7 +57,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PorwalGeneralStore.HttpWebR
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitTestHttpWebRequestClientLibraryUnitTest", "XunitTestProject\XUnitTestHttpWebRequestClientLibraryUnitTest\XUnitTestHttpWebRequestClientLibraryUnitTest.csproj", "{9FFFB86D-88DA-4932-A408-45DA6856B2F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitThirdPartyIntegrationUnitTest", "XunitTestProject\XUnitThirdPartyIntegrationUnitTest\XUnitThirdPartyIntegrationUnitTest.csproj", "{968C16DA-FE47-4D48-B616-9F1F453ED05D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitThirdPartyIntegrationUnitTest", "XunitTestProject\XUnitThirdPartyIntegrationUnitTest\XUnitThirdPartyIntegrationUnitTest.csproj", "{968C16DA-FE47-4D48-B616-9F1F453ED05D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitTestOrderBizUnitTest", "XunitTestProject\BusinessUnitTest\XUnitTestOrderBizUnitTest\XUnitTestOrderBizUnitTest.csproj", "{A25CA07A-AB94-4708-83DB-E776DDF9D561}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitSmsBizUnitTest", "XunitTestProject\BusinessUnitTest\XUnitSmsBizUnitTest\XUnitSmsBizUnitTest.csproj", "{DC13EF95-0B56-4985-A0BF-FE86A7804282}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -141,6 +145,14 @@ Global
 		{968C16DA-FE47-4D48-B616-9F1F453ED05D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{968C16DA-FE47-4D48-B616-9F1F453ED05D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{968C16DA-FE47-4D48-B616-9F1F453ED05D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A25CA07A-AB94-4708-83DB-E776DDF9D561}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A25CA07A-AB94-4708-83DB-E776DDF9D561}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A25CA07A-AB94-4708-83DB-E776DDF9D561}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A25CA07A-AB94-4708-83DB-E776DDF9D561}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC13EF95-0B56-4985-A0BF-FE86A7804282}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC13EF95-0B56-4985-A0BF-FE86A7804282}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC13EF95-0B56-4985-A0BF-FE86A7804282}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC13EF95-0B56-4985-A0BF-FE86A7804282}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -159,6 +171,8 @@ Global
 		{6F91ACDC-AB9A-43FA-B513-C97D9B9F5A7E} = {D96A0FBD-CF72-44CC-9397-19979F35D5DE}
 		{9FFFB86D-88DA-4932-A408-45DA6856B2F1} = {E8A7079D-3341-4A8A-81D5-089BFB118E4E}
 		{968C16DA-FE47-4D48-B616-9F1F453ED05D} = {E8A7079D-3341-4A8A-81D5-089BFB118E4E}
+		{A25CA07A-AB94-4708-83DB-E776DDF9D561} = {2BFC22A7-AD61-4A19-9435-58957D6122E6}
+		{DC13EF95-0B56-4985-A0BF-FE86A7804282} = {2BFC22A7-AD61-4A19-9435-58957D6122E6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E51BCA3F-CC48-4DB6-B5ED-F3F761888795}

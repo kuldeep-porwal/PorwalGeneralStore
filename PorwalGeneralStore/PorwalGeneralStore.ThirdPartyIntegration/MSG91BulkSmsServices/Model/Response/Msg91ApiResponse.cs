@@ -10,21 +10,6 @@ namespace PorwalGeneralStore.ThirdPartyIntegration.MSG91BulkSmsServices.Model.Re
         public int StatusCode { get; set; }
 
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
-        public string Message { get; set; }
-
-        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
-        public string RequestId { get; set; }
-
-        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
-        public List<Msg91ApiValidationResponse> ErrorList { get; set; }
-    }
-
-    public class Msg91ApiValidationResponse
-    {
-        public int Code { get; set; }
-        public string Message { get; set; }
-
-        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
-        public string FieldName { get; set; }
+        public BaseResponse MessageResponse { get; set; }
     }
 }

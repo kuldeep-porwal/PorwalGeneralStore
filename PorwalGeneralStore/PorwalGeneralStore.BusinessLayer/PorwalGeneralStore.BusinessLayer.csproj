@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PorwalGeneralStore.DataAccessLayer\PorwalGeneralStore.DataAccessLayer.csproj" />
+    <ProjectReference Include="..\PorwalGeneralStore.ThirdPartyIntegration\PorwalGeneralStore.ThirdPartyIntegration.csproj" />
     <ProjectReference Include="..\PorwalGeneralStore.Utility\PorwalGeneralStore.Utility.csproj" />
   </ItemGroup>
 
