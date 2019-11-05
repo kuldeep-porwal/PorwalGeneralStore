@@ -28,7 +28,7 @@ namespace PorwalGeneralStore.WebApi.Areas.Users
         /// </summary>
         /// <param name="loginForm"></param>
         /// <returns>LoginFormResponse</returns>
-        [HttpPost]
+        [HttpPost("ByUserNamePassword")]
         public ActionResult<LoginFormResponse> Post([FromBody]LoginForm loginForm)
         {
             LoginFormResponse loginFormResponse = _userBiz.AuthenticateUser(loginForm);
@@ -43,7 +43,7 @@ namespace PorwalGeneralStore.WebApi.Areas.Users
         /// </summary>
         /// <param name="MobileNumber"></param>
         /// <returns></returns>
-        [HttpPost()]
+        [HttpPost("ByMobileNumber")]
         public ActionResult<LoginFormResponse> Post([FromBody]OtpLoginForm otpLoginForm)
         {
             LoginFormResponse loginFormResponse = _userBiz.AuthenticateUserByMobileNumber(otpLoginForm);
