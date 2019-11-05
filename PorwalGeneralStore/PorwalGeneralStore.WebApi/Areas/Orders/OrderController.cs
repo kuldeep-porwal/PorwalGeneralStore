@@ -35,7 +35,7 @@ namespace PorwalGeneralStore.WebApi.Areas.Orders
             return Ok(cancelOrderFormResponse);
         }
 
-        [HttpPost("Cancel")]
+        [HttpPost("UpdateOrderAddress")]
         public ActionResult<UpdateOrderAddressFormResponse> UpdateOrderAddress([FromBody]UpdateOrderAddressForm updateOrderAddressForm)
         {
             UpdateOrderAddressFormResponse updateOrderAddressFormResponse = _orderBiz.UpdateOrderAddress(updateOrderAddressForm);
