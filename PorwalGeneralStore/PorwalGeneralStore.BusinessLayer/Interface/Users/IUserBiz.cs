@@ -10,6 +10,8 @@ namespace PorwalGeneralStore.BusinessLayer.Interface.Users
     {
         LoginFormResponse AuthenticateUser(LoginForm loginForm);
 
+        LoginFormResponse AuthenticateUserByMobileNumber(OtpLoginForm otpLoginForm);
+
         SignUpFormResponse RegistorUser(SignUpForm signUpForm);
 
         MobileNumberVerificationResponse VerifyUserAccount(string mobileNumber);

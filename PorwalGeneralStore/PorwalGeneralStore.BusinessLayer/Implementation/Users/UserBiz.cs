@@ -1,6 +1,9 @@
-﻿using PorwalGeneralStore.DataAccessLayer.Interface.Users;
+﻿using PorwalGeneralStore.BusinessLayer.Interface.Sms;
+using PorwalGeneralStore.DataAccessLayer.Interface.Users;
 using PorwalGeneralStore.DataModel.Public.Business;
+using PorwalGeneralStore.DataModel.Request.Sms;
 using PorwalGeneralStore.DataModel.Request.Users;
+using PorwalGeneralStore.DataModel.Response.Sms;
 using PorwalGeneralStore.DataModel.Response.Users;
 using PorwalGeneralStore.Utility;
 using PorwalGeneralStore.Utility.JWTTokenGenerator;
@@ -17,11 +20,13 @@ namespace PorwalGeneralStore.BusinessLayer.Interface.Users
     {
         private readonly IUserLayer _userLayer;
         private readonly IJwtBuilder _jwtBuilder;
+        private readonly ISmsBiz _smsBiz;
 
-        public UserBiz(IUserLayer userLayer, IJwtBuilder jwtBuilder)
+        public UserBiz(IUserLayer userLayer, IJwtBuilder jwtBuilder, ISmsBiz smsBiz)
         {
             _userLayer = userLayer;
             _jwtBuilder = jwtBuilder;
+            _smsBiz = smsBiz;
         }
 
         public LoginFormResponse AuthenticateUser(LoginForm loginForm)
@@ -150,6 +155,145 @@ namespace PorwalGeneralStore.BusinessLayer.Interface.Users
                     };
             }
             return loginFormResponse;
+        }
+
+        public LoginFormResponse AuthenticateUserByMobileNumber(OtpLoginForm otpLoginForm)
+        {
+            LoginFormResponse otpLoginFormResponse = new LoginFormResponse()
+            {
+                StatusCode = 200
+            };
+
+            if (otpLoginForm == null)
+            {
+                otpLoginFormResponse.StatusCode = 400;
+                otpLoginFormResponse.ErrorList = new List<LoginValidationResponse>()
+                    {
+                        new LoginValidationResponse()
+                        {
+                            Code=1001,
+                            Message="Request Object can't be blank."
+                        }
+                    };
+                return otpLoginFormResponse;
+            }
+
+            if (string.IsNullOrWhiteSpace(otpLoginForm.MobileNumber))
+            {
+                otpLoginFormResponse.StatusCode = 400;
+                otpLoginFormResponse.ErrorList = new List<LoginValidationResponse>()
+                    {
+                        new LoginValidationResponse()
+                        {
+                            Code=1001,
+                            Message="MobileNumber can't be blank."
+                        }
+                    };
+                return otpLoginFormResponse;
+            }
+
+            if (string.IsNullOrWhiteSpace(otpLoginForm.Otp))
+            {
+                otpLoginFormResponse.StatusCode = 400;
+                otpLoginFormResponse.ErrorList = new List<LoginValidationResponse>()
+                    {
+                        new LoginValidationResponse()
+                        {
+                            Code=1001,
+                            Message="Otp can't be blank."
+                        }
+                    };
+                return otpLoginFormResponse;
+            }
+
+            if (!Regex.IsMatch(otpLoginForm.MobileNumber, RegexPattern.mobile_number_validation_Patterns.GetCombinedPattern()))
+            {
+                otpLoginFormResponse.StatusCode = 400;
+                otpLoginFormResponse.ErrorList = new List<LoginValidationResponse>()
+                    {
+                        new LoginValidationResponse()
+                        {
+                            Code=1001,
+                            FieldName=nameof(otpLoginForm.MobileNumber),
+                            Message=nameof(otpLoginForm.MobileNumber)+" should be valid. Format -: xxxxxxxxxx "
+                        }
+                    };
+                return otpLoginFormResponse;
+            }
+
+            bool isMobileNumberExist = _userLayer.isExistPhoneNumber(otpLoginForm.MobileNumber);
+            if (isMobileNumberExist)
+            {
+                SmsApiResponse smsApiResponse = _smsBiz.VerifyOtpSms(new VerifyOtpRequest()
+                {
+                    mobile = otpLoginForm.MobileNumber,
+                    otp = otpLoginForm.Otp
+                });
+
+                if (smsApiResponse.StatusCode == 200)
+                {
+                    UserInformation userInformation = _userLayer.GetUserDetailByMobileNumber(otpLoginForm.MobileNumber);
+                    if (userInformation != null)
+                    {
+                        JwtTokenResponse jwtTokenResponse = GetJWTToken(userInformation);
+                        if (jwtTokenResponse.StatusCode == 200)
+                        {
+                            JwtToken tokenDetail = jwtTokenResponse.TokenDetail;
+                            otpLoginFormResponse.StatusCode = 200;
+                            otpLoginFormResponse.Response = new LoginResponse();
+                            otpLoginFormResponse.Response.UserId = userInformation.UserId;
+                            if (tokenDetail != null)
+                            {
+                                otpLoginFormResponse.Response.TokenDetail = new Token()
+                                {
+                                    Type = tokenDetail.Type,
+                                    Value = tokenDetail.Value,
+                                    CreatedAt = tokenDetail.CreatedAt,
+                                    ExpiredAt = tokenDetail.ExpiredAt
+                                };
+                            }
+                        }
+                        else
+                        {
+                            otpLoginFormResponse.StatusCode = 400;
+                            otpLoginFormResponse.ErrorList = jwtTokenResponse
+                                                            .ErrorList
+                                                            .Select(x => new LoginValidationResponse()
+                                                            {
+                                                                FieldName = x.FieldName,
+                                                                Message = x.Message,
+                                                                Code = x.Code
+                                                            }).ToList();
+                        }
+                    }
+                }
+                else
+                {
+                    otpLoginFormResponse.StatusCode = 400;
+                    otpLoginFormResponse.ErrorList = new List<LoginValidationResponse>()
+                    {
+                        new LoginValidationResponse()
+                        {
+                            Code=1001,
+                            Message="Otp Varification Unsuccessfull"
+                        }
+                    };
+                }
+            }
+            else
+            {
+                otpLoginFormResponse.StatusCode = 400;
+                otpLoginFormResponse.ErrorList = new List<LoginValidationResponse>()
+                    {
+                        new LoginValidationResponse()
+                        {
+                            Code=1001,
+                            Message=nameof(otpLoginForm.MobileNumber)+" not found."
+                        }
+                    };
+            }
+
+            return otpLoginFormResponse;
         }
 
         public JwtTokenResponse GetJWTToken(UserInformation userInformation)

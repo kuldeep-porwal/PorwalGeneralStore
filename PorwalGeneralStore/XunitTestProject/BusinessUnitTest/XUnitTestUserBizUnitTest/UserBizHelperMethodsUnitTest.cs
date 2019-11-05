@@ -1,4 +1,5 @@
 ﻿using Moq;
+using PorwalGeneralStore.BusinessLayer.Interface.Sms;
 using PorwalGeneralStore.BusinessLayer.Interface.Users;
 using PorwalGeneralStore.DataAccessLayer.Interface.Users;
 using PorwalGeneralStore.DataModel.Public.Business;
@@ -16,11 +17,13 @@ namespace XUnitTestUserBizUnitTest
         private readonly UserBiz _userBiz;
         private readonly Mock<IUserLayer> _userLayer;
         private readonly Mock<IJwtBuilder> _jwtBuilder;
+        private readonly Mock<ISmsBiz> _smsBiz;
         public UserBizHelperMethodsUnitTest()
         {
             _userLayer = new Mock<IUserLayer>();
             _jwtBuilder = new Mock<IJwtBuilder>();
-            _userBiz = new UserBiz(_userLayer.Object, _jwtBuilder.Object);
+            _smsBiz = new Mock<ISmsBiz>();
+            _userBiz = new UserBiz(_userLayer.Object, _jwtBuilder.Object, _smsBiz.Object);
         }
 
         [Fact(DisplayName = "UserBizHelperMethod -: Invalid Token Object ")]

@@ -39,6 +39,27 @@ namespace PorwalGeneralStore.DataAccessLayer.Interface.Users
             return userInformation;
         }
 
+        public UserInformation GetUserDetailByMobileNumber(string MobileNumber)
+        {
+            UserInformation userInformation = null;
+
+            CustomerInfo customerInfo = context.CustomerInfo.FirstOrDefault(
+                                        x => x.Phone.Equals(MobileNumber, StringComparison.OrdinalIgnoreCase));
+            if (customerInfo != null)
+            {
+                userInformation = new UserInformation()
+                {
+                    UserId = customerInfo.Id,
+                    City = customerInfo.City,
+                    CustomerName = customerInfo.CustomerName,
+                    FirstName = customerInfo.FirstName,
+                    LastName = customerInfo.LastName,
+                    Phone = customerInfo.Phone
+                };
+            }
+            return userInformation;
+        }
+
         public bool isExistPhoneNumber(string phoneNumber)
         {
             return context.CustomerInfo.Any(x => x.Phone.Equals(phoneNumber, StringComparison.OrdinalIgnoreCase));
