@@ -17,6 +17,7 @@ namespace PorwalGeneralStore.EdmxModel
         public string Phone { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
+        public int Type { get; set; }
 
         public virtual StoreOrder Order { get; set; }
     }

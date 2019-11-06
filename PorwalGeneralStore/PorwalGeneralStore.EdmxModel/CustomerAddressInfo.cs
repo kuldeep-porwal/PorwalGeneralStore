@@ -16,6 +16,7 @@ namespace PorwalGeneralStore.EdmxModel
         public long Pincode { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
+        public string AlternatePhoneNumber { get; set; }
 
         public virtual CustomerInfo Customer { get; set; }
     }

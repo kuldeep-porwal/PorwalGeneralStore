@@ -24,6 +24,9 @@ namespace PorwalGeneralStore.EdmxModel
         public DateTime CreateDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public DateTime? PublishedDate { get; set; }
+        public string ImgUrl { get; set; }
+        public string ShortDesc { get; set; }
+        public bool IsVariantProduct { get; set; }
 
         public virtual StoreItemCategory Category { get; set; }
         public virtual ICollection<StoreOrderItem> StoreOrderItem { get; set; }

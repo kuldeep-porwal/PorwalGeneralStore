@@ -18,6 +18,10 @@ namespace PorwalGeneralStore.EdmxModel
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Password { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime? UpdateDate { get; set; }
+        public string Email { get; set; }
+        public int UserType { get; set; }
 
         public virtual ICollection<CustomerAddressInfo> CustomerAddressInfo { get; set; }
         public virtual ICollection<StoreOrder> StoreOrder { get; set; }

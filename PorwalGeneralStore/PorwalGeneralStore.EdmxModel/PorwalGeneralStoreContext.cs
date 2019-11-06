@@ -17,7 +17,9 @@ namespace PorwalGeneralStore.EdmxModel
 
         public virtual DbSet<CustomerAddressInfo> CustomerAddressInfo { get; set; }
         public virtual DbSet<CustomerInfo> CustomerInfo { get; set; }
+        public virtual DbSet<ItemVariantType> ItemVariantType { get; set; }
         public virtual DbSet<OrderActivityInformation> OrderActivityInformation { get; set; }
+        public virtual DbSet<OrderPaymentDetail> OrderPaymentDetail { get; set; }
         public virtual DbSet<StoreItem> StoreItem { get; set; }
         public virtual DbSet<StoreItemCategory> StoreItemCategory { get; set; }
         public virtual DbSet<StoreOrder> StoreOrder { get; set; }
@@ -52,6 +54,10 @@ namespace PorwalGeneralStore.EdmxModel
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
+                entity.Property(e => e.AlternatePhoneNumber)
+                    .HasMaxLength(15)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.City)
                     .IsRequired()
                     .HasMaxLength(100)
@@ -83,9 +89,17 @@ namespace PorwalGeneralStore.EdmxModel
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
+                entity.Property(e => e.CreatedDate)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getutcdate())");
+
                 entity.Property(e => e.CustomerName)
                     .IsRequired()
                     .HasMaxLength(500)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Email)
+                    .HasMaxLength(100)
                     .IsUnicode(false);
 
                 entity.Property(e => e.FirstName)
@@ -106,6 +120,24 @@ namespace PorwalGeneralStore.EdmxModel
                 entity.Property(e => e.Phone)
                     .HasMaxLength(20)
                     .IsUnicode(false);
+
+                entity.Property(e => e.UpdateDate).HasColumnType("datetime");
+
+                entity.Property(e => e.UserType).HasDefaultValueSql("((1))");
+            });
+
+            modelBuilder.Entity<ItemVariantType>(entity =>
+            {
+                entity.Property(e => e.CreatedDate)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getutcdate())");
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UpdatedDate).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<OrderActivityInformation>(entity =>
@@ -115,6 +147,34 @@ namespace PorwalGeneralStore.EdmxModel
                     .HasDefaultValueSql("(getutcdate())");
 
                 entity.Property(e => e.OrderActivityDescription).IsUnicode(false);
+            });
+
+            modelBuilder.Entity<OrderPaymentDetail>(entity =>
+            {
+                entity.Property(e => e.Amount).HasColumnType("decimal(18, 0)");
+
+                entity.Property(e => e.CreatedDate)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getutcdate())");
+
+                entity.Property(e => e.PaymentMode)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.TransactionId)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.TransactionNote)
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.TransactionStatus)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("('Success')");
             });
 
             modelBuilder.Entity<StoreItem>(entity =>
@@ -128,6 +188,10 @@ namespace PorwalGeneralStore.EdmxModel
                     .HasDefaultValueSql("(getutcdate())");
 
                 entity.Property(e => e.Description).IsUnicode(false);
+
+                entity.Property(e => e.ImgUrl)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.IsInStoke).HasDefaultValueSql("((1))");
 
@@ -145,6 +209,10 @@ namespace PorwalGeneralStore.EdmxModel
                 entity.Property(e => e.PublishedDate).HasColumnType("datetime");
 
                 entity.Property(e => e.SellingPrice).HasColumnType("decimal(18, 0)");
+
+                entity.Property(e => e.ShortDesc)
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Sku)
                     .IsRequired()
@@ -185,13 +253,17 @@ namespace PorwalGeneralStore.EdmxModel
             {
                 entity.HasIndex(e => e.CustomerId);
 
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.CreatedDate)
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getutcdate())");
 
                 entity.Property(e => e.OrderCancelReason).IsUnicode(false);
+
+                entity.Property(e => e.OrderNumber).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.OrderStatus).HasDefaultValueSql("((1))");
 
@@ -255,6 +327,8 @@ namespace PorwalGeneralStore.EdmxModel
                     .IsRequired()
                     .HasMaxLength(100)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Type).HasDefaultValueSql("((1))");
 
                 entity.Property(e => e.UpdatedDate).HasColumnType("datetime");
 
