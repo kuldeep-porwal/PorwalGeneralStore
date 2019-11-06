@@ -253,9 +253,7 @@ namespace PorwalGeneralStore.EdmxModel
             {
                 entity.HasIndex(e => e.CustomerId);
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("id")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.CreatedDate)
                     .HasColumnType("datetime")
@@ -263,7 +261,7 @@ namespace PorwalGeneralStore.EdmxModel
 
                 entity.Property(e => e.OrderCancelReason).IsUnicode(false);
 
-                entity.Property(e => e.OrderNumber).ValueGeneratedOnAdd();
+                entity.Property(e => e.OrderNumber).HasDefaultValueSql("(rand())");
 
                 entity.Property(e => e.OrderStatus).HasDefaultValueSql("((1))");
 
