@@ -84,3 +84,5 @@
 /PorwalGeneralStore/XunitTestProject/BusinessUnitTest/XUnitSmsBizUnitTest/obj
 /PorwalGeneralStore/XunitTestProject/BusinessUnitTest/XUnitTestOrderBizUnitTest/bin/Debug/netcoreapp2.2
 /PorwalGeneralStore/XunitTestProject/BusinessUnitTest/XUnitTestOrderBizUnitTest/obj
+/PorwalGeneralStore/PorwalGeneralStore.HttpWebRequestClientLibrary/bin/Release/netcoreapp2.2
+/PorwalGeneralStore/PorwalGeneralStore.ThirdPartyIntegration/bin/Release/netcoreapp2.2
