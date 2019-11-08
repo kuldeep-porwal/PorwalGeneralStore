@@ -11,7 +11,6 @@ using PorwalGeneralStore.Utility.JWTTokenGenerator.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace PorwalGeneralStore.BusinessLayer.Interface.Users
@@ -226,8 +225,8 @@ namespace PorwalGeneralStore.BusinessLayer.Interface.Users
             {
                 SmsApiResponse smsApiResponse = _smsBiz.VerifyOtpSms(new VerifyOtpRequest()
                 {
-                    mobile = otpLoginForm.MobileNumber,
-                    otp = otpLoginForm.Otp
+                    Mobile = otpLoginForm.MobileNumber,
+                    Otp = otpLoginForm.Otp
                 });
 
                 if (smsApiResponse.StatusCode == 200)

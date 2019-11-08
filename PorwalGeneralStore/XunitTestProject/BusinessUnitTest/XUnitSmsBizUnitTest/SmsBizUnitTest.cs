@@ -193,18 +193,21 @@ namespace XUnitSmsBizUnitTest
             new object[] { new SmsOtpRequest() {Mobile=null } },
             new object[] { new SmsOtpRequest() {Mobile=""} },
             new object[] { new SmsOtpRequest() {Mobile="    ", } },
-            new object[] { new SmsOtpRequest() {Mobile="Valid NUmber", CountryCode=null } },
-            new object[] { new SmsOtpRequest() {Mobile="Valid NUmber", CountryCode = "" } },
-            new object[] { new SmsOtpRequest() {Mobile="Valid NUmber", CountryCode = "   " } },
-            new object[] { new SmsOtpRequest() {Mobile="Valid NUmber", CountryCode = string.Empty } },
+            new object[] { new SmsOtpRequest() {Mobile= "1234567890", CountryCode=0 } },
+            new object[] { new SmsOtpRequest() {Mobile= "1234567890", CountryCode = -1 } },
+            new object[] { new SmsOtpRequest() {Mobile= "1234567890", CountryCode = -1122} },
+            new object[] { new SmsOtpRequest() {Mobile= "1234567890", CountryCode = 0 } },
       };
         public static IEnumerable<object[]> InvalidVerifyOtpSmsRequestData =>
         new List<object[]>
         {
             new object[] { null },
-            new object[] { new VerifyOtpRequest() {mobile=null,otp =null} },
-            new object[] { new VerifyOtpRequest() {mobile="",otp =""} },
-            new object[] { new VerifyOtpRequest() {mobile="    ",otp ="  "} },
+            new object[] { new VerifyOtpRequest() {Mobile=null,Otp =null} },
+            new object[] { new VerifyOtpRequest() {Mobile="",Otp =""} },
+            new object[] { new VerifyOtpRequest() {Mobile="    ",Otp ="  "} },
+            new object[] { new VerifyOtpRequest() {Mobile="  dsdasdasd  ",Otp ="  "} },
+            new object[] { new VerifyOtpRequest() {Mobile="dasd54545",Otp ="  "} },
+            new object[] { new VerifyOtpRequest() {Mobile="789654123654788",Otp ="  "} },
             };
     }
 }

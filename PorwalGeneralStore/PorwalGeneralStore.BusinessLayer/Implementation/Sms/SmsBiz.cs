@@ -7,7 +7,8 @@ using PorwalGeneralStore.ThirdPartyIntegration.MSG91BulkSmsServices.Model.Respon
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Text.RegularExpressions;
+using PorwalGeneralStore.Utility;
 
 namespace PorwalGeneralStore.BusinessLayer.Implementation.Sms
 {
@@ -174,39 +175,51 @@ namespace PorwalGeneralStore.BusinessLayer.Implementation.Sms
                 if (string.IsNullOrWhiteSpace(smsRequest.Mobile))
                 {
                     smsApiResponse.StatusCode = 400;
-                    smsApiResponse.ErrorList = new List<SmsApiValidationResponse>()
-                    {
-                        new SmsApiValidationResponse()
-                        {
-                            Code=1001,
-                            FieldName=nameof(smsRequest.Mobile),
-                            Message=nameof(smsRequest.Mobile)+" is required."
-                        }
-                    };
+                    smsApiResponse.ErrorList = GetSmsApiValidationResponses(1001, nameof(smsRequest.Mobile) + " is required.", nameof(smsRequest.Mobile));
                     return smsApiResponse;
                 }
-                if (string.IsNullOrWhiteSpace(smsRequest.CountryCode))
+
+                if (!Regex.IsMatch(smsRequest.Mobile, RegexPattern.mobile_number_validation_Patterns.GetCombinedPattern()))
                 {
                     smsApiResponse.StatusCode = 400;
-                    smsApiResponse.ErrorList = new List<SmsApiValidationResponse>()
-                    {
-                        new SmsApiValidationResponse()
-                        {
-                            Code=1001,
-                            FieldName=nameof(smsRequest.CountryCode),
-                            Message=nameof(smsRequest.CountryCode)+" is required."
-                        }
-                    };
+                    smsApiResponse.ErrorList = GetSmsApiValidationResponses(1001, nameof(smsRequest.Mobile) + " should be valid. Format -: xxxxxxxxxx ", nameof(smsRequest.Mobile));
+                    return smsApiResponse;
+                }
+
+                if (smsRequest.CountryCode <= 0)
+                {
+                    smsApiResponse.StatusCode = 400;
+                    smsApiResponse.ErrorList = GetSmsApiValidationResponses(1001, nameof(smsRequest.CountryCode) + " is required.", nameof(smsRequest.CountryCode));
                     return smsApiResponse;
                 }
 
                 Msg91SmsOtpRequest smsOtpRequest = new Msg91SmsOtpRequest()
                 {
-                    mobile = smsRequest.Mobile,
-                    message = "Otp Send to User",
+                    mobile = string.Format("{0}{1}", smsRequest.CountryCode, smsRequest.Mobile),
+                    template_id = string.IsNullOrWhiteSpace(smsRequest.MessageTemplate) ? "5dc5a276d6fc0553643c78b4" : smsRequest.MessageTemplate,
                     otp = 12345
                 };
-                _msg91.SendOtpSms(smsOtpRequest);
+
+                Msg91ApiResponse msg91ApiResponse = _msg91.SendOtpSms(smsOtpRequest);
+                if (msg91ApiResponse.StatusCode == 200)
+                {
+                    BaseResponse baseResponse = msg91ApiResponse.MessageResponse;
+                    if (string.Equals(baseResponse.Type, "error", StringComparison.OrdinalIgnoreCase))
+                    {
+                        smsApiResponse.StatusCode = 400;
+                        smsApiResponse.ErrorList = GetSmsApiValidationResponses(1001, baseResponse.Message);
+                    }
+                    else
+                    {
+                        smsApiResponse.StatusCode = 200;
+                        smsApiResponse.Response = new SmsResponse() { Message = baseResponse.Message, RequestId = baseResponse.RequestId, Type = baseResponse.Type };
+                    }
+                }
+                else
+                {
+                    smsApiResponse.StatusCode = 400;
+                    smsApiResponse.ErrorList = GetSmsApiValidationResponses(1001, "otp not verified");
+                }
             }
             else
             {
@@ -292,49 +305,79 @@ namespace PorwalGeneralStore.BusinessLayer.Implementation.Sms
             SmsApiResponse smsApiResponse = new SmsApiResponse() { StatusCode = 200 };
             if (smsRequest != null)
             {
-                if (string.IsNullOrWhiteSpace(smsRequest.mobile))
+                if (string.IsNullOrWhiteSpace(smsRequest.Mobile))
                 {
                     smsApiResponse.StatusCode = 400;
-                    smsApiResponse.ErrorList = new List<SmsApiValidationResponse>()
-                    {
-                        new SmsApiValidationResponse()
-                        {
-                            Code=1001,
-                            FieldName=nameof(smsRequest.mobile),
-                            Message=nameof(smsRequest.mobile)+" is required."
-                        }
-                    };
+                    smsApiResponse.ErrorList = GetSmsApiValidationResponses(1001, nameof(smsRequest.Mobile) + " is required.", nameof(smsRequest.Mobile));
                     return smsApiResponse;
                 }
 
-                if (string.IsNullOrWhiteSpace(smsRequest.otp))
+                if (!Regex.IsMatch(smsRequest.Mobile, RegexPattern.mobile_number_validation_Patterns.GetCombinedPattern()))
                 {
                     smsApiResponse.StatusCode = 400;
-                    smsApiResponse.ErrorList = new List<SmsApiValidationResponse>()
-                    {
-                        new SmsApiValidationResponse()
-                        {
-                            Code=1001,
-                            FieldName=nameof(smsRequest.otp),
-                            Message=nameof(smsRequest.otp)+" is required."
-                        }
-                    };
+                    smsApiResponse.ErrorList = GetSmsApiValidationResponses(1001, nameof(smsRequest.Mobile) + " should be valid. Format -: xxxxxxxxxx ", nameof(smsRequest.Mobile));
                     return smsApiResponse;
+                }
+
+                if (smsRequest.CountryCode <= 0)
+                {
+                    smsApiResponse.StatusCode = 400;
+                    smsApiResponse.ErrorList = GetSmsApiValidationResponses(1001, nameof(smsRequest.CountryCode) + " is required.", nameof(smsRequest.CountryCode));
+                    return smsApiResponse;
+                }
+
+                if (string.IsNullOrWhiteSpace(smsRequest.Otp))
+                {
+                    smsApiResponse.StatusCode = 400;
+                    smsApiResponse.ErrorList = GetSmsApiValidationResponses(1001, nameof(smsRequest.Otp) + " is required.", nameof(smsRequest.Otp));
+                    return smsApiResponse;
+                }
+
+                Msg91VerifyOtpRequest msg91VerifyOtpRequest = new Msg91VerifyOtpRequest()
+                {
+                    mobile = string.Format("{0}{1}", smsRequest.CountryCode, smsRequest.Mobile),
+                    otp = smsRequest.Otp
+                };
+
+                Msg91ApiResponse msg91ApiResponse = _msg91.VerifyOtpSms(msg91VerifyOtpRequest);
+                if (msg91ApiResponse.StatusCode == 200)
+                {
+                    BaseResponse baseResponse = msg91ApiResponse.MessageResponse;
+                    if (string.Equals(baseResponse.Type, "error", StringComparison.OrdinalIgnoreCase))
+                    {
+                        smsApiResponse.StatusCode = 400;
+                        smsApiResponse.ErrorList = GetSmsApiValidationResponses(1001, baseResponse.Message);
+                    }
+                    else
+                    {
+                        smsApiResponse.StatusCode = 200;
+                        smsApiResponse.Response = new SmsResponse() { Message = baseResponse.Message, RequestId = baseResponse.RequestId, Type = baseResponse.Type };
+                    }
+                }
+                else
+                {
+                    smsApiResponse.StatusCode = 400;
+                    smsApiResponse.ErrorList = GetSmsApiValidationResponses(1001, "otp not verified");
                 }
             }
             else
             {
                 smsApiResponse.StatusCode = 400;
-                smsApiResponse.ErrorList = new List<SmsApiValidationResponse>() {
-                    new SmsApiValidationResponse()
-                    {
-                        Code=1001,
-                        FieldName=nameof(smsRequest),
-                        Message="Request Data is Invlid."
-                    }
-                };
+                smsApiResponse.ErrorList = GetSmsApiValidationResponses(1001, nameof(smsRequest) + " is required.", nameof(smsRequest));
             }
             return smsApiResponse;
+        }
+
+        public List<SmsApiValidationResponse> GetSmsApiValidationResponses(int code, string message, string fieldName = null)
+        {
+            return new List<SmsApiValidationResponse>() {
+                    new SmsApiValidationResponse()
+                    {
+                        Code=code,
+                        FieldName=fieldName,
+                        Message=message
+                    }
+                };
         }
     }
 }

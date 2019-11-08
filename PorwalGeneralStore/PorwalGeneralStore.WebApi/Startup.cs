@@ -27,6 +27,8 @@ using PorwalGeneralStore.BusinessLayer.Interface.Orders;
 using PorwalGeneralStore.BusinessLayer.Implementation.Orders;
 using PorwalGeneralStore.DataAccessLayer.Interface.Orders;
 using PorwalGeneralStore.DataAccessLayer.Implementation.Orders;
+using PorwalGeneralStore.BusinessLayer.Interface.Sms;
+using PorwalGeneralStore.BusinessLayer.Implementation.Sms;
 
 namespace PorwalGeneralStore.WebApi
 {
@@ -45,7 +47,7 @@ namespace PorwalGeneralStore.WebApi
             _logger.LogInformation("Configuring Services Finished");
             _ = services.AddSingleton(Configuration.BindAndReturn<JwtConfiguration>("JwtConfiguration"));
             _ = services.AddSingleton(Configuration.BindAndReturn<HttpWebRequestConfiguration>("HttpWebRequestConfiguration"));
-            _ = services.AddSingleton(Configuration.BindAndReturn<Msg91BulkSmsServiceConfiguration>("HttpWebRequestConfiguration"));
+            _ = services.AddSingleton(Configuration.BindAndReturn<Msg91BulkSmsServiceConfiguration>("Msg91BulkSmsServiceConfiguration"));
             services.AddDbContext<PorwalGeneralStoreContext>(options =>
                         options.UseSqlServer(Configuration.GetConnectionString("ConnectionStrings")));
 
@@ -62,6 +64,7 @@ namespace PorwalGeneralStore.WebApi
 
             services.AddScoped<IMsg91, Msg91>();
             services.AddScoped<IHttpWebRequestHandler, HttpWebRequestHandler>();
+            services.AddScoped<ISmsBiz, SmsBiz>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

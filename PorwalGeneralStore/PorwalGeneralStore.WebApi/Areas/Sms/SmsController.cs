@@ -23,10 +23,17 @@ namespace PorwalGeneralStore.WebApi.Areas.Sms
 
 
         // GET api/<controller>/5
-        [HttpGet("{id}")]
-        public SmsApiResponse SendOtp([FromRoute]string mobileNumber, [FromQuery]string countryCode)
+        [HttpGet("SendOtp/{mobileNumber}")]
+        public SmsApiResponse SendOtp([FromRoute]string mobileNumber, [FromQuery]int countryCode)
         {
             return _smsBiz.SendOtpSms(new SmsOtpRequest() { CountryCode = countryCode, Mobile = mobileNumber });
+        }
+
+        // GET api/<controller>/5
+        [HttpPost("VerifyOtp")]
+        public SmsApiResponse VerifyOtp(VerifyOtpRequest verifyOtpRequest)
+        {
+            return _smsBiz.VerifyOtpSms(verifyOtpRequest);
         }
     }
 }

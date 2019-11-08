@@ -35,7 +35,7 @@ namespace XUnitThirdPartyIntegrationUnitTest.Msg91UnitTest
         public void UnitTest7()
         {
             MockHttpSuccessResponse();
-            var ActualResult = msg91.SendOtpSms(new Msg91SmsOtpRequest() { mobile = "9876543214", otp = 123456, message = "temp Message" });
+            var ActualResult = msg91.SendOtpSms(new Msg91SmsOtpRequest() { mobile = "9876543214", otp = 123456, template_id = "temp Message" });
             Assert.NotNull(ActualResult);
             Assert.True(ActualResult.StatusCode == 200);
         }
@@ -98,7 +98,7 @@ namespace XUnitThirdPartyIntegrationUnitTest.Msg91UnitTest
         public void UnitTest13()
         {
             MockHttpFailResponse();
-            var ActualResult = msg91.SendOtpSms(new Msg91SmsOtpRequest() { mobile = "9876543214", otp = 123456, message = "temp Message" });
+            var ActualResult = msg91.SendOtpSms(new Msg91SmsOtpRequest() { mobile = "9876543214", otp = 123456, template_id = "temp Message" });
             Assert.NotNull(ActualResult);
             Assert.True(ActualResult.StatusCode == 400);
         }

@@ -9,8 +9,8 @@ namespace PorwalGeneralStore.ThirdPartyIntegration.MSG91BulkSmsServices
         public const string SEND_SINGLE_SMS_URL = "/api/sendhttp.php";
         public const string SEND_BULK_SMS_URL = "/api/v2/sendsms?country=91";
         public const string SEND_OTP_ON_EMAIL_URL = "/api/sendmailotp.php";
-        public const string SEND_OTP_SMS_URL = "/api/sendotp.php";
+        public const string SEND_OTP_SMS_URL = "/api/v5/otp";
         public const string RESEND_OTP_SMS_URL = "/api/retryotp.php";
-        public const string VERIFYREQUESTOTP_OTP_SMS_URL = "/api/verifyRequestOTP.php";
+        public const string VERIFYREQUESTOTP_OTP_SMS_URL = "/api/v5/otp/verify";
     }
 }

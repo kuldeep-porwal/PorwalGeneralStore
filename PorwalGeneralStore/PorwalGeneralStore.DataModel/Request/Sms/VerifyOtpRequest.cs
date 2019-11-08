@@ -4,9 +4,10 @@ using System.Text;
 
 namespace PorwalGeneralStore.DataModel.Request.Sms
 {
-    public class VerifyOtpRequest 
+    public class VerifyOtpRequest
     {
-        public string mobile { get; set; }
-        public string otp { get; set; }
+        public string Mobile { get; set; }
+        public string Otp { get; set; }
+        public int CountryCode { get; set; }
     }
 }

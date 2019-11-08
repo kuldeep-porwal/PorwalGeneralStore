@@ -5,9 +5,7 @@ using PorwalGeneralStore.ThirdPartyIntegration.MSG91BulkSmsServices.Model.Reques
 using PorwalGeneralStore.ThirdPartyIntegration.MSG91BulkSmsServices.Model.Response;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using PorwalGeneralStore.HttpWebRequestClientLibrary.Model;
-using System.Linq;
 using PorwalGeneralStore.Utility;
 
 namespace PorwalGeneralStore.ThirdPartyIntegration.MSG91BulkSmsServices.Implementation
@@ -108,7 +106,6 @@ namespace PorwalGeneralStore.ThirdPartyIntegration.MSG91BulkSmsServices.Implemen
             queryParameter.Add("authkey", _msg91ServiceConfiguration.AuthKey);
             queryParameter.Add("sender", _msg91ServiceConfiguration.SenderId);
             queryParameter.Add("mobile", smsRequest.mobile.ToString());
-            queryParameter.Add("message", smsRequest.message);
             queryParameter.Add("otp", smsRequest.otp.ToString());
 
             if (!string.IsNullOrWhiteSpace(smsRequest.email))
@@ -123,17 +120,20 @@ namespace PorwalGeneralStore.ThirdPartyIntegration.MSG91BulkSmsServices.Implemen
             {
                 queryParameter.Add("otp_length", smsRequest.otp_length.ToString());
             }
-            if (smsRequest.template > 0)
+            if (!string.IsNullOrWhiteSpace(smsRequest.template_id))
             {
-                queryParameter.Add("template", smsRequest.template.ToString());
+                queryParameter.Add("template_id", smsRequest.template_id);
             }
 
             BaseHttpWebResponse httpWebResponse = _httpWebRequestHandler.Post(url, null, requestHeader, queryParameter);
             if (httpWebResponse != null)
             {
-                BaseResponse msg91response = StringUtility.ConvertJsonToObject<BaseResponse>(httpWebResponse.Response);
                 msg91ApiResponse.StatusCode = httpWebResponse.StatusCode;
-                msg91ApiResponse.MessageResponse = msg91response;
+                msg91ApiResponse.MessageResponse = StringUtility.ConvertJsonToObject<BaseResponse>(httpWebResponse.Response);
+            }
+            else
+            {
+                msg91ApiResponse.StatusCode = 400;
             }
             return msg91ApiResponse;
         }
@@ -203,9 +203,12 @@ namespace PorwalGeneralStore.ThirdPartyIntegration.MSG91BulkSmsServices.Implemen
             BaseHttpWebResponse httpWebResponse = _httpWebRequestHandler.Post(url, null, requestHeader, queryParameter);
             if (httpWebResponse != null)
             {
-                BaseResponse msg91response = StringUtility.ConvertJsonToObject<BaseResponse>(httpWebResponse.Response);
                 msg91ApiResponse.StatusCode = httpWebResponse.StatusCode;
-                msg91ApiResponse.MessageResponse = msg91response;
+                msg91ApiResponse.MessageResponse = StringUtility.ConvertJsonToObject<BaseResponse>(httpWebResponse.Response);
+            }
+            else
+            {
+                msg91ApiResponse.StatusCode = 400;
             }
             return msg91ApiResponse;
         }
