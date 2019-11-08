@@ -354,7 +354,8 @@ namespace XUnitTestUserBizUnitTest
             var ActualResult = _userBiz.AuthenticateUserByMobileNumber(new OtpLoginForm()
             {
                 MobileNumber = mobileNumber,
-                Otp = otp
+                Otp = otp,
+                CountryCode = 91
             });
 
             _smsBiz.Verify(x => x.VerifyOtpSms(It.IsAny<VerifyOtpRequest>()), Times.Once);
@@ -391,7 +392,7 @@ namespace XUnitTestUserBizUnitTest
         }
 
         [Theory(DisplayName = "Business -: Mobile Number Verification SuccessFull.")]
-        [InlineData("1234566711", "Password")]
+        [InlineData("1234566711", "Otp")]
         public void UnitTest15(string mobileNumber, string otp)
         {
             _smsBiz.Setup(x => x.VerifyOtpSms(It.IsAny<VerifyOtpRequest>())).Returns(new SmsApiResponse()
@@ -420,7 +421,8 @@ namespace XUnitTestUserBizUnitTest
             var ActualResult = _userBiz.AuthenticateUserByMobileNumber(new OtpLoginForm()
             {
                 MobileNumber = mobileNumber,
-                Otp = otp
+                Otp = otp,
+                CountryCode=91
             });
 
             _userLayer.Verify(x => x.isExistPhoneNumber(It.IsAny<string>()), Times.Once);
@@ -448,7 +450,8 @@ namespace XUnitTestUserBizUnitTest
             var ActualResult = _userBiz.AuthenticateUserByMobileNumber(new OtpLoginForm()
             {
                 MobileNumber = mobileNumber,
-                Otp = otp
+                Otp = otp,
+                CountryCode = 91
             });
 
             _userLayer.Verify(x => x.isExistPhoneNumber(It.IsAny<string>()), Times.Once);
@@ -461,7 +464,7 @@ namespace XUnitTestUserBizUnitTest
         }
 
         [Theory(DisplayName = "Business -: Generate Jwt Token for Mobile Number.")]
-        [InlineData("1234566711", "Password")]
+        [InlineData("1234566711", "Otp")]
         public void UnitTest17(string mobileNumber, string otp)
         {
             _smsBiz.Setup(x => x.VerifyOtpSms(It.IsAny<VerifyOtpRequest>())).Returns(new SmsApiResponse()
@@ -490,7 +493,8 @@ namespace XUnitTestUserBizUnitTest
             var ActualResult = _userBiz.AuthenticateUserByMobileNumber(new OtpLoginForm()
             {
                 MobileNumber = mobileNumber,
-                Otp = otp
+                Otp = otp,
+                CountryCode=91
             });
 
             _userLayer.Verify(x => x.isExistPhoneNumber(It.IsAny<string>()), Times.Once);

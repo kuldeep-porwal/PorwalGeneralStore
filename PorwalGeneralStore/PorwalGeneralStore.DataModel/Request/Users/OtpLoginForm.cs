@@ -8,5 +8,6 @@ namespace PorwalGeneralStore.DataModel.Request.Users
     {
         public string MobileNumber { get; set; }
         public string Otp { get; set; }
+        public int CountryCode { get; set; }
     }
 }

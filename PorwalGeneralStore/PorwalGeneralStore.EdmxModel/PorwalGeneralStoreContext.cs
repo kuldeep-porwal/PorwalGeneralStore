@@ -36,7 +36,7 @@ namespace PorwalGeneralStore.EdmxModel
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("ProductVersion", "2.2.4-servicing-10062");
+            modelBuilder.HasAnnotation("ProductVersion", "2.2.6-servicing-10079");
 
             modelBuilder.Entity<CustomerAddressInfo>(entity =>
             {
@@ -83,6 +83,10 @@ namespace PorwalGeneralStore.EdmxModel
 
             modelBuilder.Entity<CustomerInfo>(entity =>
             {
+                entity.HasIndex(e => e.Id)
+                    .HasName("Unique_PhoneNumber_CustomerInfo")
+                    .IsUnique();
+
                 entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.City)

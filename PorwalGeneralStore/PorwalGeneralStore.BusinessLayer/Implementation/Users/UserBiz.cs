@@ -205,6 +205,20 @@ namespace PorwalGeneralStore.BusinessLayer.Interface.Users
                 return otpLoginFormResponse;
             }
 
+            if (otpLoginForm.CountryCode <= 0)
+            {
+                otpLoginFormResponse.StatusCode = 400;
+                otpLoginFormResponse.ErrorList = new List<LoginValidationResponse>()
+                    {
+                        new LoginValidationResponse()
+                        {
+                            Code=1001,
+                            Message="CountryCode can't be blank."
+                        }
+                    };
+                return otpLoginFormResponse;
+            }
+
             if (!Regex.IsMatch(otpLoginForm.MobileNumber, RegexPattern.mobile_number_validation_Patterns.GetCombinedPattern()))
             {
                 otpLoginFormResponse.StatusCode = 400;
@@ -226,7 +240,8 @@ namespace PorwalGeneralStore.BusinessLayer.Interface.Users
                 SmsApiResponse smsApiResponse = _smsBiz.VerifyOtpSms(new VerifyOtpRequest()
                 {
                     Mobile = otpLoginForm.MobileNumber,
-                    Otp = otpLoginForm.Otp
+                    Otp = otpLoginForm.Otp,
+                    CountryCode = otpLoginForm.CountryCode
                 });
 
                 if (smsApiResponse.StatusCode == 200)
@@ -269,14 +284,11 @@ namespace PorwalGeneralStore.BusinessLayer.Interface.Users
                 else
                 {
                     otpLoginFormResponse.StatusCode = 400;
-                    otpLoginFormResponse.ErrorList = new List<LoginValidationResponse>()
+                    otpLoginFormResponse.ErrorList = smsApiResponse.ErrorList.Select(x => new LoginValidationResponse()
                     {
-                        new LoginValidationResponse()
-                        {
-                            Code=1001,
-                            Message="Otp Varification Unsuccessfull"
-                        }
-                    };
+                        Code = x.Code,
+                        Message = x.Message
+                    }).ToList();
                 }
             }
             else
