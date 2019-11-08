@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PorwalGeneralStore.ThirdPartyIntegration.MSG91BulkSmsServices.Model.Request
 {
-    public class SmsOtpRequest 
+    public class Msg91SmsOtpRequest 
     {
         public string email { get; set; }
         public int template { get; set; }

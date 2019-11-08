@@ -4,9 +4,9 @@ using System.Text;
 
 namespace PorwalGeneralStore.ThirdPartyIntegration.MSG91BulkSmsServices.Model.Request
 {
-    public class ResendSmsOtpRequest 
+    public class Msg91EmailOtpRequest 
     {
-        public string retrytype { get; set; }
-        public long mobile { get; set; }
+        public string otp { get; set; }
+        public string email { get; set; }
     }
 }

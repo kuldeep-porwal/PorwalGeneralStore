@@ -4,18 +4,11 @@ using System.Text;
 
 namespace PorwalGeneralStore.DataModel.Request.Sms
 {
-    public class SingleSmsRequest 
+    public class SingleSmsRequest
     {
-        public int country { get; set; }
-        public string message { get; set; }
-        public string sender { get; set; }
-        public string route { get; set; }
-        public string mobiles { get; set; }
-        public bool? unicode { get; set; }
-        public bool? flash { get; set; }
-        public DateTime? schtime { get; set; }
-        public int afterminutes { get; set; }
-        public string response { get; set; }
-        public string campaign { get; set; }
+        public int Country { get; set; }
+        public string Message { get; set; }
+        public string Route { get; set; }
+        public string Mobiles { get; set; }
     }
 }

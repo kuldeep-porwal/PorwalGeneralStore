@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\Email\" />
-    <Folder Include="Areas\Sms\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

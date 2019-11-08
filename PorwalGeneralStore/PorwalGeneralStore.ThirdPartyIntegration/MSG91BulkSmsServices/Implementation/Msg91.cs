@@ -22,7 +22,7 @@ namespace PorwalGeneralStore.ThirdPartyIntegration.MSG91BulkSmsServices.Implemen
             _httpWebRequestHandler = httpWebRequestHandler;
         }
 
-        public Msg91ApiResponse ResendOtpSms(ResendSmsOtpRequest smsRequest)
+        public Msg91ApiResponse ResendOtpSms(Msg91ResendSmsOtpRequest smsRequest)
         {
             Msg91ApiResponse msg91ApiResponse = new Msg91ApiResponse() { StatusCode = 200 };
             string url = _msg91ServiceConfiguration.SendOtpApiUrl + Msg91Constant.RESEND_OTP_SMS_URL;
@@ -48,7 +48,7 @@ namespace PorwalGeneralStore.ThirdPartyIntegration.MSG91BulkSmsServices.Implemen
             return msg91ApiResponse;
         }
 
-        public Msg91ApiResponse SendBulkSms(BulkSmsRequest bulkSmsRequest)
+        public Msg91ApiResponse SendBulkSms(Msg91BulkSmsRequest bulkSmsRequest)
         {
             Msg91ApiResponse msg91ApiResponse = new Msg91ApiResponse() { StatusCode = 200 };
             string url = _msg91ServiceConfiguration.BaseApiUrl + Msg91Constant.SEND_BULK_SMS_URL;
@@ -73,7 +73,7 @@ namespace PorwalGeneralStore.ThirdPartyIntegration.MSG91BulkSmsServices.Implemen
             return msg91ApiResponse;
         }
 
-        public Msg91ApiResponse SendOtpOnEmail(EmailOtpRequest smsRequest)
+        public Msg91ApiResponse SendOtpOnEmail(Msg91EmailOtpRequest smsRequest)
         {
             Msg91ApiResponse msg91ApiResponse = new Msg91ApiResponse() { StatusCode = 200 };
             string url = _msg91ServiceConfiguration.SendOtpApiUrl + Msg91Constant.SEND_OTP_ON_EMAIL_URL;
@@ -96,7 +96,7 @@ namespace PorwalGeneralStore.ThirdPartyIntegration.MSG91BulkSmsServices.Implemen
             return msg91ApiResponse;
         }
 
-        public Msg91ApiResponse SendOtpSms(SmsOtpRequest smsRequest)
+        public Msg91ApiResponse SendOtpSms(Msg91SmsOtpRequest smsRequest)
         {
             Msg91ApiResponse msg91ApiResponse = new Msg91ApiResponse() { StatusCode = 200 };
             string url = _msg91ServiceConfiguration.SendOtpApiUrl + Msg91Constant.SEND_OTP_SMS_URL;
@@ -106,7 +106,7 @@ namespace PorwalGeneralStore.ThirdPartyIntegration.MSG91BulkSmsServices.Implemen
 
             Dictionary<string, string> queryParameter = new Dictionary<string, string>();
             queryParameter.Add("authkey", _msg91ServiceConfiguration.AuthKey);
-            queryParameter.Add("sender", smsRequest.sender);
+            queryParameter.Add("sender", _msg91ServiceConfiguration.SenderId);
             queryParameter.Add("mobile", smsRequest.mobile.ToString());
             queryParameter.Add("message", smsRequest.message);
             queryParameter.Add("otp", smsRequest.otp.ToString());
@@ -138,7 +138,7 @@ namespace PorwalGeneralStore.ThirdPartyIntegration.MSG91BulkSmsServices.Implemen
             return msg91ApiResponse;
         }
 
-        public Msg91ApiResponse SendSingleSms(SingleSmsRequest smsRequest)
+        public Msg91ApiResponse SendSingleSms(Msg91SingleSmsRequest smsRequest)
         {
 
             Msg91ApiResponse msg91ApiResponse = new Msg91ApiResponse() { StatusCode = 200 };
@@ -187,7 +187,7 @@ namespace PorwalGeneralStore.ThirdPartyIntegration.MSG91BulkSmsServices.Implemen
             return msg91ApiResponse;
         }
 
-        public Msg91ApiResponse VerifyOtpSms(VerifyOtpRequest smsRequest)
+        public Msg91ApiResponse VerifyOtpSms(Msg91VerifyOtpRequest smsRequest)
         {
             Msg91ApiResponse msg91ApiResponse = new Msg91ApiResponse() { StatusCode = 200 };
             string url = _msg91ServiceConfiguration.SendOtpApiUrl + Msg91Constant.VERIFYREQUESTOTP_OTP_SMS_URL;

@@ -2,6 +2,7 @@
 using PorwalGeneralStore.DataModel.Request.Sms;
 using PorwalGeneralStore.DataModel.Response.Sms;
 using PorwalGeneralStore.ThirdPartyIntegration.MSG91BulkSmsServices.Interface;
+using PorwalGeneralStore.ThirdPartyIntegration.MSG91BulkSmsServices.Model.Request;
 using PorwalGeneralStore.ThirdPartyIntegration.MSG91BulkSmsServices.Model.Response;
 using System;
 using System.Collections.Generic;
@@ -170,7 +171,7 @@ namespace PorwalGeneralStore.BusinessLayer.Implementation.Sms
             SmsApiResponse smsApiResponse = new SmsApiResponse() { StatusCode = 200 };
             if (smsRequest != null)
             {
-                if (string.IsNullOrWhiteSpace(smsRequest.mobile))
+                if (string.IsNullOrWhiteSpace(smsRequest.Mobile))
                 {
                     smsApiResponse.StatusCode = 400;
                     smsApiResponse.ErrorList = new List<SmsApiValidationResponse>()
@@ -178,13 +179,13 @@ namespace PorwalGeneralStore.BusinessLayer.Implementation.Sms
                         new SmsApiValidationResponse()
                         {
                             Code=1001,
-                            FieldName=nameof(smsRequest.mobile),
-                            Message=nameof(smsRequest.mobile)+" is required."
+                            FieldName=nameof(smsRequest.Mobile),
+                            Message=nameof(smsRequest.Mobile)+" is required."
                         }
                     };
                     return smsApiResponse;
                 }
-                if (string.IsNullOrWhiteSpace(smsRequest.message))
+                if (string.IsNullOrWhiteSpace(smsRequest.CountryCode))
                 {
                     smsApiResponse.StatusCode = 400;
                     smsApiResponse.ErrorList = new List<SmsApiValidationResponse>()
@@ -192,27 +193,20 @@ namespace PorwalGeneralStore.BusinessLayer.Implementation.Sms
                         new SmsApiValidationResponse()
                         {
                             Code=1001,
-                            FieldName=nameof(smsRequest.message),
-                            Message=nameof(smsRequest.message)+" is required."
-                        }
-                    };
-                    return smsApiResponse;
-                }
-                if (smsRequest.otp <= 0)
-                {
-                    smsApiResponse.StatusCode = 400;
-                    smsApiResponse.ErrorList = new List<SmsApiValidationResponse>()
-                    {
-                        new SmsApiValidationResponse()
-                        {
-                            Code=1001,
-                            FieldName=nameof(smsRequest.otp),
-                            Message=nameof(smsRequest.otp)+" is required."
+                            FieldName=nameof(smsRequest.CountryCode),
+                            Message=nameof(smsRequest.CountryCode)+" is required."
                         }
                     };
                     return smsApiResponse;
                 }
 
+                Msg91SmsOtpRequest smsOtpRequest = new Msg91SmsOtpRequest()
+                {
+                    mobile = smsRequest.Mobile,
+                    message = "Otp Send to User",
+                    otp = 12345
+                };
+                _msg91.SendOtpSms(smsOtpRequest);
             }
             else
             {
@@ -235,7 +229,7 @@ namespace PorwalGeneralStore.BusinessLayer.Implementation.Sms
             SmsApiResponse smsApiResponse = new SmsApiResponse() { StatusCode = 200 };
             if (smsRequest != null)
             {
-                if (string.IsNullOrWhiteSpace(smsRequest.mobiles))
+                if (string.IsNullOrWhiteSpace(smsRequest.Mobiles))
                 {
                     smsApiResponse.StatusCode = 400;
                     smsApiResponse.ErrorList = new List<SmsApiValidationResponse>()
@@ -243,13 +237,13 @@ namespace PorwalGeneralStore.BusinessLayer.Implementation.Sms
                         new SmsApiValidationResponse()
                         {
                             Code=1001,
-                            FieldName=nameof(smsRequest.mobiles),
-                            Message=nameof(smsRequest.mobiles)+" is required."
+                            FieldName=nameof(smsRequest.Mobiles),
+                            Message=nameof(smsRequest.Mobiles)+" is required."
                         }
                     };
                     return smsApiResponse;
                 }
-                if (string.IsNullOrWhiteSpace(smsRequest.route))
+                if (string.IsNullOrWhiteSpace(smsRequest.Route))
                 {
                     smsApiResponse.StatusCode = 400;
                     smsApiResponse.ErrorList = new List<SmsApiValidationResponse>()
@@ -257,13 +251,13 @@ namespace PorwalGeneralStore.BusinessLayer.Implementation.Sms
                         new SmsApiValidationResponse()
                         {
                             Code=1001,
-                            FieldName=nameof(smsRequest.route),
-                            Message=nameof(smsRequest.route)+" is required."
+                            FieldName=nameof(smsRequest.Route),
+                            Message=nameof(smsRequest.Route)+" is required."
                         }
                     };
                     return smsApiResponse;
                 }
-                if (smsRequest.country <= 0)
+                if (smsRequest.Country <= 0)
                 {
                     smsApiResponse.StatusCode = 400;
                     smsApiResponse.ErrorList = new List<SmsApiValidationResponse>()
@@ -271,8 +265,8 @@ namespace PorwalGeneralStore.BusinessLayer.Implementation.Sms
                         new SmsApiValidationResponse()
                         {
                             Code=1001,
-                            FieldName=nameof(smsRequest.route),
-                            Message=nameof(smsRequest.route)+" is required."
+                            FieldName=nameof(smsRequest.Route),
+                            Message=nameof(smsRequest.Route)+" is required."
                         }
                     };
                     return smsApiResponse;

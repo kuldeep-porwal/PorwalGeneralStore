@@ -5,18 +5,15 @@ using System.Text;
 
 namespace PorwalGeneralStore.DataModel.Response.Sms
 {
-    public class SmsApiResponse : BaseResponse
+    public class SmsResponse
     {
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
-        public SmsResponse Response { get; set; }
+        public string Message { get; set; }
 
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
-        public List<SmsApiValidationResponse> ErrorList { get; set; }
-    }
+        public string Type { get; set; }
 
-    public class SmsApiValidationResponse : BaseValidationResponse
-    {
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
-        public string FieldName { get; set; }
+        public string RequestId { get; set; }
     }
 }

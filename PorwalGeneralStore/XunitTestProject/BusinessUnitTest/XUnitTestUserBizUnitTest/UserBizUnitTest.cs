@@ -331,7 +331,7 @@ namespace XUnitTestUserBizUnitTest
             _smsBiz.Setup(x => x.VerifyOtpSms(It.IsAny<VerifyOtpRequest>())).Returns(new SmsApiResponse()
             {
                 StatusCode = 200,
-                Response = new BaseResponse() { Message = "Suceess" }
+                Response = new SmsResponse() { Message = "Suceess" }
             });
 
             _userLayer.Setup(x => x.isExistPhoneNumber(It.IsAny<string>())).Returns(true);
@@ -373,7 +373,7 @@ namespace XUnitTestUserBizUnitTest
             _smsBiz.Setup(x => x.VerifyOtpSms(It.IsAny<VerifyOtpRequest>())).Returns(new SmsApiResponse()
             {
                 StatusCode = 400,
-                Response = new BaseResponse() { Message = "Error" }
+                Response = new SmsResponse() { Message = "Error" }
             });
 
             var ActualResult = _userBiz.AuthenticateUserByMobileNumber(new OtpLoginForm()
@@ -397,7 +397,7 @@ namespace XUnitTestUserBizUnitTest
             _smsBiz.Setup(x => x.VerifyOtpSms(It.IsAny<VerifyOtpRequest>())).Returns(new SmsApiResponse()
             {
                 StatusCode = 200,
-                Response = new BaseResponse() { Message = "Suceess" }
+                Response = new SmsResponse() { Message = "Suceess" }
             });
 
             _userLayer.Setup(x => x.isExistPhoneNumber(It.IsAny<string>())).Returns(true);
@@ -440,7 +440,7 @@ namespace XUnitTestUserBizUnitTest
             _smsBiz.Setup(x => x.VerifyOtpSms(It.IsAny<VerifyOtpRequest>())).Returns(new SmsApiResponse()
             {
                 StatusCode = 200,
-                Response = new BaseResponse() { Message = "Suceess" }
+                Response = new SmsResponse() { Message = "Suceess" }
             });
 
             _userLayer.Setup(x => x.isExistPhoneNumber(It.IsAny<string>())).Returns(false);
@@ -467,7 +467,7 @@ namespace XUnitTestUserBizUnitTest
             _smsBiz.Setup(x => x.VerifyOtpSms(It.IsAny<VerifyOtpRequest>())).Returns(new SmsApiResponse()
             {
                 StatusCode = 200,
-                Response = new BaseResponse() { Message = "Suceess" }
+                Response = new SmsResponse() { Message = "Suceess" }
             });
 
             _userLayer.Setup(x => x.isExistPhoneNumber(It.IsAny<string>())).Returns(true);

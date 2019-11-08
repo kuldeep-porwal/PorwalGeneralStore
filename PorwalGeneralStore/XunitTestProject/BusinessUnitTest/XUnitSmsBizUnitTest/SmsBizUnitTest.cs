@@ -161,17 +161,17 @@ namespace XUnitSmsBizUnitTest
         new List<object[]>
         {
             new object[] { null},
-            new object[] { new SingleSmsRequest() {mobiles=null } },
-            new object[] { new SingleSmsRequest() {mobiles="" } },
-            new object[] { new SingleSmsRequest() {mobiles="  " } },
-            new object[] { new SingleSmsRequest() {message=null } },
-            new object[] { new SingleSmsRequest() {message = "" } },
-            new object[] { new SingleSmsRequest() {message = "  " } },
-            new object[] { new SingleSmsRequest() {route=null } },
-            new object[] { new SingleSmsRequest() {route="" } },
-            new object[] { new SingleSmsRequest() {route="  " } },
-            new object[] { new SingleSmsRequest() {country=0 } },
-            new object[] { new SingleSmsRequest() {country=-1 } },
+            new object[] { new SingleSmsRequest() {Mobiles=null } },
+            new object[] { new SingleSmsRequest() {Mobiles="" } },
+            new object[] { new SingleSmsRequest() {Mobiles="  " } },
+            new object[] { new SingleSmsRequest() {Message=null } },
+            new object[] { new SingleSmsRequest() {Message = "" } },
+            new object[] { new SingleSmsRequest() {Message = "  " } },
+            new object[] { new SingleSmsRequest() {Route=null } },
+            new object[] { new SingleSmsRequest() {Route="" } },
+            new object[] { new SingleSmsRequest() {Route="  " } },
+            new object[] { new SingleSmsRequest() {Country=0 } },
+            new object[] { new SingleSmsRequest() {Country=-1 } },
             };
         public static IEnumerable<object[]> InvalidSendOtpOnEmailRequestData =>
                 new List<object[]>
@@ -190,13 +190,13 @@ namespace XUnitSmsBizUnitTest
         {
             new object[] { null },
             new object[] { new SmsOtpRequest() { } },
-            new object[] { new SmsOtpRequest() {mobile=null } },
-            new object[] { new SmsOtpRequest() {mobile=""} },
-            new object[] { new SmsOtpRequest() {mobile="    ", } },
-            new object[] { new SmsOtpRequest() {mobile="Valid NUmber",message=null } },
-            new object[] { new SmsOtpRequest() {mobile="Valid NUmber",message="" } },
-            new object[] { new SmsOtpRequest() {mobile="Valid NUmber",message="   " } },
-            new object[] { new SmsOtpRequest() {mobile="Valid NUmber",message=string.Empty } },
+            new object[] { new SmsOtpRequest() {Mobile=null } },
+            new object[] { new SmsOtpRequest() {Mobile=""} },
+            new object[] { new SmsOtpRequest() {Mobile="    ", } },
+            new object[] { new SmsOtpRequest() {Mobile="Valid NUmber", CountryCode=null } },
+            new object[] { new SmsOtpRequest() {Mobile="Valid NUmber", CountryCode = "" } },
+            new object[] { new SmsOtpRequest() {Mobile="Valid NUmber", CountryCode = "   " } },
+            new object[] { new SmsOtpRequest() {Mobile="Valid NUmber", CountryCode = string.Empty } },
       };
         public static IEnumerable<object[]> InvalidVerifyOtpSmsRequestData =>
         new List<object[]>

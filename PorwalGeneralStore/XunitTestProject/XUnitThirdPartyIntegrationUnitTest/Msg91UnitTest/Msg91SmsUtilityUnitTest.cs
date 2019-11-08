@@ -35,7 +35,7 @@ namespace XUnitThirdPartyIntegrationUnitTest.Msg91UnitTest
         public void UnitTest7()
         {
             MockHttpSuccessResponse();
-            var ActualResult = msg91.SendOtpSms(new SmsOtpRequest() { mobile = "9876543214", otp = 123456, message = "temp Message" });
+            var ActualResult = msg91.SendOtpSms(new Msg91SmsOtpRequest() { mobile = "9876543214", otp = 123456, message = "temp Message" });
             Assert.NotNull(ActualResult);
             Assert.True(ActualResult.StatusCode == 200);
         }
@@ -44,7 +44,7 @@ namespace XUnitThirdPartyIntegrationUnitTest.Msg91UnitTest
         public void UnitTest8()
         {
             MockHttpSuccessResponse();
-            var ActualResult = msg91.ResendOtpSms(new ResendSmsOtpRequest() { mobile = 98765432148 });
+            var ActualResult = msg91.ResendOtpSms(new Msg91ResendSmsOtpRequest() { mobile = 98765432148 });
             Assert.NotNull(ActualResult);
             Assert.True(ActualResult.StatusCode == 200);
         }
@@ -53,7 +53,7 @@ namespace XUnitThirdPartyIntegrationUnitTest.Msg91UnitTest
         public void UnitTest9()
         {
             MockHttpSuccessResponse();
-            var ActualResult = msg91.VerifyOtpSms(new VerifyOtpRequest() { mobile = "98765432148", otp = "123456" });
+            var ActualResult = msg91.VerifyOtpSms(new Msg91VerifyOtpRequest() { mobile = "98765432148", otp = "123456" });
             Assert.NotNull(ActualResult);
             Assert.True(ActualResult.StatusCode == 200);
         }
@@ -70,7 +70,7 @@ namespace XUnitThirdPartyIntegrationUnitTest.Msg91UnitTest
                                  It.IsAny<Dictionary<string, string>>())
                             )
                     .Returns(new BaseHttpWebResponse() { StatusCode = 200, Response = StringUtility.ConvertObjectToJson(new EmailOtpResponse() { msg = "3763646c3058373530393938", msg_type = "success" }), WebResponse = new HttpWebResponse() });
-            var ActualResult = msg91.SendOtpOnEmail(new EmailOtpRequest() { email = "kuldeep@gmail.com", otp = "123456" });
+            var ActualResult = msg91.SendOtpOnEmail(new Msg91EmailOtpRequest() { email = "kuldeep@gmail.com", otp = "123456" });
             Assert.NotNull(ActualResult);
             Assert.True(ActualResult.StatusCode == 200);
         }
@@ -79,7 +79,7 @@ namespace XUnitThirdPartyIntegrationUnitTest.Msg91UnitTest
         public void UnitTest11()
         {
             MockHttpSuccessResponse();
-            var ActualResult = msg91.SendSingleSms(new SingleSmsRequest() { mobiles = "98765432311", message = "TEMP mwssage 123456789", route = "1", country = 91 });
+            var ActualResult = msg91.SendSingleSms(new Msg91SingleSmsRequest() { mobiles = "98765432311", message = "TEMP mwssage 123456789", route = "1", country = 91 });
             Assert.NotNull(ActualResult);
             Assert.True(ActualResult.StatusCode == 200);
         }
@@ -88,7 +88,7 @@ namespace XUnitThirdPartyIntegrationUnitTest.Msg91UnitTest
         public void UnitTest12()
         {
             MockHttpSuccessResponse();
-            var ActualResult = msg91.SendBulkSms(new BulkSmsRequest() { country = "91", route = "1", sms = new List<SmsRequestFormat>() { new SmsRequestFormat() { message = "test message", to = new List<string>() { "987654362331" } } } });
+            var ActualResult = msg91.SendBulkSms(new Msg91BulkSmsRequest() { country = "91", route = "1", sms = new List<Msg91SmsRequestFormat>() { new Msg91SmsRequestFormat() { message = "test message", to = new List<string>() { "987654362331" } } } });
             Assert.NotNull(ActualResult);
             Assert.True(ActualResult.StatusCode == 200);
 
@@ -98,7 +98,7 @@ namespace XUnitThirdPartyIntegrationUnitTest.Msg91UnitTest
         public void UnitTest13()
         {
             MockHttpFailResponse();
-            var ActualResult = msg91.SendOtpSms(new SmsOtpRequest() { mobile = "9876543214", otp = 123456, message = "temp Message" });
+            var ActualResult = msg91.SendOtpSms(new Msg91SmsOtpRequest() { mobile = "9876543214", otp = 123456, message = "temp Message" });
             Assert.NotNull(ActualResult);
             Assert.True(ActualResult.StatusCode == 400);
         }
@@ -107,7 +107,7 @@ namespace XUnitThirdPartyIntegrationUnitTest.Msg91UnitTest
         public void UnitTest14()
         {
             MockHttpFailResponse();
-            var ActualResult = msg91.ResendOtpSms(new ResendSmsOtpRequest() { mobile = 98765432148 });
+            var ActualResult = msg91.ResendOtpSms(new Msg91ResendSmsOtpRequest() { mobile = 98765432148 });
             Assert.NotNull(ActualResult);
             Assert.True(ActualResult.StatusCode == 400);
         }
@@ -116,7 +116,7 @@ namespace XUnitThirdPartyIntegrationUnitTest.Msg91UnitTest
         public void UnitTest15()
         {
             MockHttpFailResponse();
-            var ActualResult = msg91.VerifyOtpSms(new VerifyOtpRequest() { mobile = "98765432148", otp = "123456" });
+            var ActualResult = msg91.VerifyOtpSms(new Msg91VerifyOtpRequest() { mobile = "98765432148", otp = "123456" });
             Assert.NotNull(ActualResult);
             Assert.True(ActualResult.StatusCode == 400);
         }
@@ -125,7 +125,7 @@ namespace XUnitThirdPartyIntegrationUnitTest.Msg91UnitTest
         public void UnitTest16()
         {
             MockHttpFailResponse();
-            var ActualResult = msg91.SendOtpOnEmail(new EmailOtpRequest() { email = "kuldeep@gmail.com", otp = "123456" });
+            var ActualResult = msg91.SendOtpOnEmail(new Msg91EmailOtpRequest() { email = "kuldeep@gmail.com", otp = "123456" });
             Assert.NotNull(ActualResult);
             Assert.True(ActualResult.StatusCode == 400);
         }
@@ -134,7 +134,7 @@ namespace XUnitThirdPartyIntegrationUnitTest.Msg91UnitTest
         public void UnitTest17()
         {
             MockHttpFailResponse();
-            var ActualResult = msg91.SendSingleSms(new SingleSmsRequest() { mobiles = "98765432311", message = "TEMP mwssage 123456789", route = "1", country = 91 });
+            var ActualResult = msg91.SendSingleSms(new Msg91SingleSmsRequest() { mobiles = "98765432311", message = "TEMP mwssage 123456789", route = "1", country = 91 });
             Assert.NotNull(ActualResult);
             Assert.True(ActualResult.StatusCode == 400);
         }
@@ -143,7 +143,7 @@ namespace XUnitThirdPartyIntegrationUnitTest.Msg91UnitTest
         public void UnitTest18()
         {
             MockHttpFailResponse();
-            var ActualResult = msg91.SendBulkSms(new BulkSmsRequest() { country = "91", route = "1", });
+            var ActualResult = msg91.SendBulkSms(new Msg91BulkSmsRequest() { country = "91", route = "1", });
             Assert.NotNull(ActualResult);
             Assert.True(ActualResult.StatusCode == 400);
         }

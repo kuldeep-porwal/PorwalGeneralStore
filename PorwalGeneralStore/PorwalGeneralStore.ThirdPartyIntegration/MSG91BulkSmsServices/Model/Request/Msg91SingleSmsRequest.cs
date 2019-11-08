@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PorwalGeneralStore.ThirdPartyIntegration.MSG91BulkSmsServices.Model.Request
 {
-    public class SingleSmsRequest 
+    public class Msg91SingleSmsRequest 
     {
         public int country { get; set; }
         public string message { get; set; }
